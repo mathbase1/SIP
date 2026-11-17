@@ -1,0 +1,1181 @@
+<!doctype html>
+<html lang="en-GB" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="description" content="Offline GCSE Mathematics SIP generator with nine dropdown-based ProMonitor sections, an editable Teams message and an automatic term-time review date.">
+  <title>GCSE Mathematics · SIP Generator</title>
+  <style>
+    :root{color-scheme:light;--page:#f3f5f7;--paper:#fff;--soft:#f8fafb;--ink:#182f3f;--muted:#5b6f7c;--line:#dbe4e8;--accent:#146b60;--accent-hover:#0d564e;--accent-soft:#e9f5f0;--accent-ink:#0f5d51;--blue:#205b96;--blue-soft:#edf4fd;--amber:#7c500e;--amber-soft:#fff5e2;--error:#ac303a;--error-soft:#fff0f1;--input:#fff;--focus:#2b73bd;--shadow:0 5px 24px #17324605;--radius:18px}
+    [data-theme="dark"]{color-scheme:dark;--page:#101b25;--paper:#192936;--soft:#14232f;--ink:#edf4f7;--muted:#adbfcb;--line:#354955;--accent:#72cfb7;--accent-hover:#9de2cf;--accent-soft:#203e3a;--accent-ink:#a2e4cf;--blue:#9bc5f6;--blue-soft:#203951;--amber:#f4ce8b;--amber-soft:#3d3223;--error:#ffb1b5;--error-soft:#422d36;--input:#13242f;--focus:#8fbdf0;--shadow:none}
+    *{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,textarea{font:inherit}button,input,textarea,summary{-webkit-tap-highlight-color:transparent}button{cursor:pointer;touch-action:manipulation}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:3px}h1,h2,h3,p{margin:0}button,summary{color:inherit}button{min-height:44px}input,textarea{min-width:0}svg{display:block;flex:none}a{color:var(--accent-ink)}[hidden]{display:none!important}
+    .page{max-width:1290px;margin:0 auto;padding:30px 28px 24px}.masthead{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:30px}.brand{display:flex;align-items:center;gap:12px;min-width:0}.brand-icon{width:42px;height:42px;display:grid;place-items:center;background:var(--ink);color:var(--paper);border-radius:13px}.brand-title{font-size:.8rem;letter-spacing:.12em;font-weight:800;text-transform:uppercase}.brand-caption{font-size:.78rem;color:var(--muted);margin-top:1px}.masthead-tools{display:flex;align-items:center;gap:12px}.clock{text-align:right;font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}.clock strong{display:block;color:var(--ink);font-size:.82rem;font-weight:650}.icon-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:9px 11px;font-size:.8rem}.intro{margin-bottom:25px;display:flex;align-items:flex-start;justify-content:space-between;gap:24px}.intro h1{font-size:clamp(1.9rem,4vw,2.65rem);line-height:1.14;letter-spacing:-.045em;margin-bottom:11px}.intro p{color:var(--muted);font-size:.94rem;max-width:760px}.threshold-chip{border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:11px 16px;text-align:center;white-space:nowrap;flex:none}.threshold-chip strong{display:block;font-size:1.2rem;letter-spacing:-.03em;line-height:1.2}.threshold-chip span{font-size:.72rem;color:var(--muted)}
+    .setup-grid{display:grid;grid-template-columns:1.12fr 1fr;gap:22px;align-items:start}.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);min-width:0;overflow:hidden}.card-head{padding:19px 23px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.heading-wrap{display:flex;align-items:center;gap:10px}.section-number{display:grid;place-items:center;width:27px;height:27px;border-radius:8px;font-size:.74rem;font-weight:800;color:var(--accent-ink);background:var(--accent-soft)}h2{font-size:1.02rem;letter-spacing:-.02em}.quiet-label{font-size:.74rem;color:var(--muted)}.form-body,.schedule-body{padding:22px 23px}.field-grid{display:grid;grid-template-columns:.82fr 1.35fr;gap:16px}.field+ .field{margin-top:17px}.field-grid>.field+ .field{margin-top:0}label{display:block;font-size:.86rem;font-weight:650;margin-bottom:7px}.label-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.optional{font-size:.72rem;font-weight:400;color:var(--muted)}input[type=text]{width:100%;min-height:48px;border:1px solid #acbdc7;border-radius:9px;background:var(--input);color:var(--ink);padding:10px 12px;font-size:16px;line-height:1.5}input::placeholder,textarea::placeholder{color:var(--muted);opacity:.8}[data-theme=dark] input[type=text]{border-color:var(--line)}[aria-invalid=true]{border-color:var(--error)!important}.field-note{font-size:.76rem;color:var(--muted);margin-top:7px;line-height:1.55}.field-error{font-size:.76rem;color:var(--error);margin-top:6px}.attendance-field{margin-top:19px}.attendance-row{display:flex;align-items:center;gap:15px}.percent-wrap{position:relative;width:142px;flex:none}#attendance{font-size:1.4rem;font-weight:700;font-variant-numeric:tabular-nums;padding-right:39px;min-height:54px}.percent-symbol{position:absolute;right:13px;top:10px;font-size:1.3rem;color:var(--muted);pointer-events:none}.attendance-preview{font-size:.77rem;line-height:1.5;color:var(--muted)}.attendance-preview strong{display:block;font-size:.82rem;font-weight:650;color:var(--ink)}.attendance-preview[data-state=eligible] strong{color:var(--accent-ink)}.attendance-preview[data-state=invalid] strong,.attendance-preview[data-state=outside] strong{color:var(--error)}details{font-size:.82rem}summary{cursor:pointer;font-weight:650;line-height:1.6;padding:5px 0;color:var(--accent-ink)}.options{margin-top:20px;padding-top:13px;border-top:1px solid var(--line)}.options-body{padding-top:13px}.options-body .field{margin-top:15px}.options-body .field:first-child{margin-top:0}.input-note{width:100%;min-height:96px;border:1px solid #acbdc7;border-radius:9px;background:var(--input);color:var(--ink);padding:10px 12px;font-size:16px;line-height:1.6;resize:vertical}.note-meta{font-size:.7rem;text-align:right;color:var(--muted);margin-top:3px}.form-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.button{display:inline-flex;justify-content:center;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);font-size:.82rem;font-weight:650;padding:10px 14px;transition:background .15s,border-color .15s}.button:hover:not(:disabled),.icon-button:hover{background:var(--soft);border-color:var(--muted)}.button.primary{flex:1;background:var(--accent);border-color:var(--accent);color:#fff;min-height:48px;font-size:.87rem}.button.primary:hover{background:var(--accent-hover);border-color:var(--accent-hover)}[data-theme=dark] .button.primary{color:#10251f}.form-feedback{font-size:.79rem;color:var(--error);margin-top:11px}.form-feedback:empty{display:none}
+    .schedule-head{background:var(--accent-soft)}.calendar-tag{font-size:.72rem;color:var(--accent-ink);font-weight:650}.date-path{display:grid;grid-template-columns:1fr 1fr;gap:12px}.date-block{padding:14px 15px;border:1px solid var(--line);border-radius:12px;background:var(--soft);min-width:0}.date-block.review{background:var(--accent-soft);border-color:transparent}.date-caption{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--muted);margin-bottom:7px}.review .date-caption{color:var(--accent-ink)}.date-value{display:block;font-size:1.06rem;font-weight:750;letter-spacing:-.02em;line-height:1.35}.date-weekday{font-size:.76rem;color:var(--muted);margin-top:3px}.date-block.review .date-value{color:var(--accent-ink)}.review-countdown{display:flex;align-items:center;gap:9px;font-size:.86rem;font-weight:650;margin-top:17px}.timer-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}.review-countdown[data-state=due] .timer-dot{background:var(--amber)}.review-countdown[data-state=overdue]{color:var(--error)}.review-countdown[data-state=overdue] .timer-dot{background:var(--error)}.schedule-explanation{font-size:.78rem;color:var(--muted);line-height:1.65;margin-top:9px}.schedule-notice{margin-top:13px;padding:11px 13px;background:var(--amber-soft);color:var(--amber);border-radius:10px;font-size:.78rem;line-height:1.6}.schedule-notice.error{background:var(--error-soft);color:var(--error)}.date-rules{margin-top:17px;padding-top:12px;border-top:1px solid var(--line)}.rules-body{padding-top:9px;color:var(--muted);font-size:.76rem;line-height:1.65}.rules-body p+p{margin-top:10px}.rules-body strong{color:var(--ink)}.calendar-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.74rem}.calendar-table th,.calendar-table td{padding:8px 7px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.calendar-table th{font-weight:650;color:var(--ink)}.calendar-table td:first-child{width:38%}.calendar-table .end-date{display:block}.date-note{margin-top:12px;font-size:.72rem;color:var(--muted)}
+    .results-section{margin-top:30px}.results-head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:0 0 15px}.results-title{font-size:1.14rem;letter-spacing:-.025em}.results-head>div:first-child{min-width:0;max-width:100%}.results-subtitle{overflow-wrap:anywhere;font-size:.77rem;color:var(--muted);margin-top:3px}.result-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.small-button{padding:8px 11px;min-height:40px;font-size:.75rem}.output-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}.output-head{align-items:flex-start}.app-label{display:flex;align-items:center;gap:9px}.app-icon{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--blue-soft);color:var(--blue);font-size:.8rem;font-weight:750}.teams-icon{background:var(--accent-soft);color:var(--accent-ink)}.output-description{font-size:.74rem;color:var(--muted);margin-top:3px}.output-status{font-size:.7rem;color:var(--muted);text-align:right;max-width:45%;padding-top:5px}.output-body{padding:18px 20px 20px}.output-instructions{font-size:.74rem;font-weight:400;color:var(--muted);margin-bottom:9px}.output-text{display:block;width:100%;min-height:270px;border:1px solid var(--line);border-radius:11px;background:var(--soft);color:var(--ink);padding:17px;font-size:.88rem;line-height:1.8;resize:vertical;overflow-wrap:anywhere;overflow-y:auto}.output-text:read-only{cursor:default}.output-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;font-size:.7rem;color:var(--muted)}.copy-button{width:100%;margin-top:15px;min-height:45px;background:var(--blue-soft);color:var(--blue);border-color:transparent}.copy-button:hover:not(:disabled){background:var(--blue-soft);border-color:var(--blue)}.copy-feedback{font-size:.74rem;color:var(--accent-ink);margin-top:9px;min-height:22px;line-height:1.55}.global-feedback{font-size:.8rem;color:var(--accent-ink);margin-bottom:12px}.global-feedback:empty{display:none}.print-copy{display:none}.footer{margin-top:22px;padding-top:17px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px 26px;flex-wrap:wrap;font-size:.72rem;line-height:1.65;color:var(--muted)}.footer p{max-width:610px}.footer strong{font-weight:650;color:var(--ink)}.noscript{margin-bottom:20px;padding:14px;background:var(--error-soft);color:var(--error);border-radius:10px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .course-context{margin-bottom:20px;padding:13px 15px;border:1px solid var(--line);border-radius:11px;background:var(--soft)}.fixed-course{font-size:.91rem;font-weight:750;color:var(--accent-ink)}.fixed-period{margin-top:6px;font-size:.78rem;color:var(--muted)}.fixed-period span{display:block;margin-bottom:2px}.fixed-period strong{font-weight:650;color:var(--ink);overflow-wrap:anywhere}.course-context .field-note{font-size:.7rem;margin-top:6px}
+    @media(min-width:1001px){.schedule-card{position:sticky;top:18px}.output-text{min-height:320px}}
+    @media(max-width:1000px){.page{padding:25px 20px}.setup-grid{grid-template-columns:1.1fr 1fr}.card-head{padding:17px 18px}.form-body,.schedule-body{padding:19px 18px}.field-grid{grid-template-columns:1fr}.field-grid>.field+ .field{margin-top:0}.date-path{gap:8px}.date-block{padding:12px 10px}.date-value{font-size:.95rem}.intro h1{font-size:2.15rem}.results-head{align-items:flex-start}.result-actions{justify-content:flex-end;max-width:55%}.output-body{padding:17px}.output-text{padding:14px}}
+    @media(max-width:760px){.page{max-width:660px;padding:20px 16px}.masthead{gap:12px;margin-bottom:25px}.brand-caption{font-size:.72rem}.masthead-tools{gap:8px}.clock{font-size:.68rem}.clock strong{font-size:.72rem}.theme-text{display:none}.icon-button{padding:9px;min-width:40px}.brand-icon{width:37px;height:37px}.brand-title{font-size:.72rem}.intro{gap:16px}.intro h1{font-size:1.9rem;line-height:1.18}.intro p{font-size:.86rem}.threshold-chip{padding:9px 11px}.threshold-chip strong{font-size:1rem}.threshold-chip span{font-size:.65rem}.setup-grid,.output-grid{grid-template-columns:1fr;gap:18px}.field-grid{grid-template-columns:.85fr 1.35fr}.date-value{font-size:1.1rem}.date-block{padding:14px}.results-head{flex-direction:column;gap:12px}.result-actions{max-width:none;justify-content:flex-start;gap:7px}.results-section{margin-top:25px}.output-text{min-height:245px;font-size:16px;line-height:1.7}.output-body{padding:18px}.footer{margin-top:19px}.date-rules{margin-top:14px}}
+    @media(max-width:440px){.page{padding:17px 12px}.masthead{flex-wrap:wrap;gap:11px}.masthead-tools{margin-left:auto}.clock strong{font-size:.7rem}.brand-title{font-size:.69rem}.brand-caption{font-size:.68rem}.brand-icon{width:34px;height:34px}.brand{gap:8px}.intro{display:block}.intro h1{font-size:1.8rem}.threshold-chip{display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:7px 10px;text-align:left}.threshold-chip span{font-size:.7rem}.threshold-chip strong{font-size:.94rem}.field-grid{grid-template-columns:1fr}.card-head{padding:16px}.form-body,.schedule-body{padding:18px 16px}.date-value{font-size:.99rem}.date-caption{font-size:.68rem}.date-block{padding:11px}.attendance-row{gap:12px}.percent-wrap{width:128px}.attendance-preview{font-size:.73rem}.attendance-preview strong{font-size:.76rem}.form-actions .button{font-size:.8rem}.output-body{padding:16px}.output-text{padding:13px}.result-actions .button{font-size:.72rem;padding:8px 9px}.output-status{font-size:.65rem}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+    @media print{@page{margin:15mm}html,html[data-theme=dark]{color-scheme:light}body{background:white!important;color:#111!important;font-size:11pt}.page{max-width:none;padding:0}.masthead,.intro,.setup-grid,.result-actions,.results-subtitle,.global-feedback,.output-instructions,.output-text,.output-meta,.copy-button,.copy-feedback,.output-status,.footer,.app-icon{display:none!important}.results-section{margin:0}.results-head{margin:0 0 15px}.results-title{font-size:18pt;color:#111}.output-grid{display:block}.card{background:white;border:0;border-radius:0;box-shadow:none;overflow:visible}.output-card+.output-card{break-before:page;page-break-before:always}.output-head{padding:0 0 12px;border-bottom:1px solid #bbb;color:#111}.output-description{color:#555}.output-body{padding:13px 0 0}.print-copy{display:block;white-space:pre-wrap;overflow-wrap:anywhere;font:10.5pt/1.65 Arial,sans-serif;color:#111}.output-card{break-inside:auto}h2{break-after:avoid}}
+
+    select{font:inherit;font-size:16px;display:block;width:100%;max-width:100%;min-width:0;min-height:48px;border:1px solid #acbdc7;border-radius:9px;padding:10px 36px 10px 12px;background:var(--input);color:var(--ink);cursor:pointer}select:focus-visible{outline:3px solid var(--focus);outline-offset:3px}[data-theme=dark] select{border-color:var(--line)}.stage-field{margin-top:20px;padding-top:17px;border-top:1px solid var(--line)}.sections-list{display:flex;flex-direction:column;gap:18px}.section-card{min-width:0}.section-head{display:flex;align-items:flex-start;gap:11px;padding:18px 20px;border-bottom:1px solid var(--line);background:var(--soft)}.section-index{display:grid;place-items:center;flex:none;width:27px;height:27px;border-radius:8px;background:var(--accent-soft);color:var(--accent-ink);font-size:.72rem;font-weight:750}.section-head h3{font-size:.95rem;line-height:1.5;letter-spacing:-.015em;min-width:0;padding-top:2px}.section-body{padding:18px 20px}.dropdown-label{font-size:.75rem;color:var(--muted);font-weight:500;margin-bottom:7px}.section-help{font-size:.73rem;color:var(--muted);margin:9px 0 15px;line-height:1.65}.section-text{min-height:124px!important;font-size:.86rem;line-height:1.75}.section-card[data-section=steps] .section-text{min-height:190px!important}.section-bottom{display:flex;justify-content:space-between;gap:10px;font-size:.7rem;color:var(--muted);margin-top:7px}.section-bottom span:last-child{text-align:right}.section-copy{margin-top:13px;min-height:42px}.section-card .copy-feedback{min-height:0}.section-card .copy-feedback:empty{display:none}.section-guide{font-size:.79rem;color:var(--muted);margin:0 0 16px;line-height:1.65}.record-bottom-actions{display:flex;align-items:center;gap:14px;margin-top:18px}.record-bottom-actions .button{flex:none}.record-bottom-actions p{font-size:.74rem;color:var(--muted)}.combined-card{margin-top:20px;padding:0 20px}.combined-card>summary{padding:17px 0;font-size:.87rem}.combined-body{padding:0 0 18px}.combined-body .output-text{min-height:240px}.teams-section{margin-top:25px}.teams-section .output-text{min-height:290px}.teams-section .output-body{padding:20px 23px}.print-record{display:none}.jump-button{text-decoration:none}.jump-button:focus-visible{outline:3px solid var(--focus);outline-offset:3px}.results-head{align-items:flex-start}.result-actions{max-width:60%;justify-content:flex-end}.results-title{font-size:1.18rem}
+    @media(max-width:760px){.sections-list{display:flex;flex-direction:column}.result-actions{max-width:none;justify-content:flex-start}.section-head{padding:16px 18px}.section-body{padding:17px 18px}.section-text{font-size:16px}.record-bottom-actions{align-items:flex-start;flex-wrap:wrap}.teams-section .output-body{padding:18px}.combined-card{padding:0 18px}}
+    @media(max-width:440px){.section-head{padding:15px}.section-body{padding:16px 15px}.section-head h3{font-size:.9rem}.result-actions .button{font-size:.7rem}.teams-section .output-body{padding:16px}.record-bottom-actions .button{width:100%}.combined-card{padding:0 16px}}
+    @media print{.sections-list,.combined-card,.section-guide,.record-bottom-actions,.jump-button{display:none!important}.print-record{display:block!important}.print-record .print-copy{display:block!important}.teams-section{break-before:page;page-break-before:always;margin-top:0}.results-head{display:none!important}.print-record h2{font-size:16pt;padding-bottom:12px;border-bottom:1px solid #bbb;margin-bottom:10px}.output-card+.output-card{break-before:auto;page-break-before:auto}}
+
+    :root{--selected-line:#568fc9;--selected-bg:#f2f7fd;--selected-head:#e5effb;--selected-ink:#174e83;--copied-line:#2a8b66;--copied-bg:#edf8f1;--copied-head:#dcefe3;--copied-ink:#115b3c}
+    [data-theme=dark]{--selected-line:#7db4ec;--selected-bg:#142d44;--selected-head:#1e3a54;--selected-ink:#bcddff;--copied-line:#73c7a1;--copied-bg:#14372b;--copied-head:#204a3a;--copied-ink:#a5e6c6}
+    .section-card{width:100%;transition:background-color .15s ease,border-color .15s ease;scroll-margin-top:20px}.section-head{align-items:center}.section-head h3{flex:1}.workflow-badge{flex:none;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--muted);padding:5px 10px;font-size:.72rem;font-weight:650;white-space:nowrap}.section-card[data-workflow=selected]{border-color:var(--selected-line);background:var(--selected-bg);box-shadow:inset 4px 0 0 var(--selected-line)}.section-card[data-workflow=selected] .section-head{background:var(--selected-head)}.section-card[data-workflow=selected] .workflow-badge{color:var(--selected-ink);border-color:var(--selected-line);background:var(--selected-bg)}.section-card[data-workflow=selected] .section-index{background:var(--selected-ink);color:var(--paper)}.section-card[data-workflow=copied]{border-color:var(--copied-line);background:var(--copied-bg);box-shadow:inset 4px 0 0 var(--copied-line)}.section-card[data-workflow=copied] .section-head{background:var(--copied-head)}.section-card[data-workflow=copied] .workflow-badge{color:var(--copied-ink);border-color:var(--copied-line);background:var(--copied-bg)}.section-card[data-workflow=copied] .section-index{background:var(--copied-ink);color:var(--paper)}.section-card[data-workflow=copied] .section-copy{background:var(--copied-head);color:var(--copied-ink);border-color:var(--copied-line)}.teams-section[data-workflow=copied],.combined-card[data-workflow=copied]{border-color:var(--copied-line);background:var(--copied-bg)}.teams-section[data-workflow=copied] .card-head{background:var(--copied-head)}.workflow-summary{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:0 0 18px;padding:13px 16px;background:var(--paper);border:1px solid var(--line);border-radius:12px}.workflow-legend{display:flex;gap:10px 18px;flex-wrap:wrap}.legend-item{display:inline-flex;gap:7px;align-items:center;font-size:.74rem;color:var(--muted)}.legend-item i{width:10px;height:10px;border-radius:50%;background:var(--line);border:1px solid var(--muted)}.legend-item.selected{color:var(--selected-ink)}.legend-item.selected i{background:var(--selected-line);border-color:var(--selected-line)}.legend-item.copied{color:var(--copied-ink)}.legend-item.copied i{background:var(--copied-line);border-color:var(--copied-line)}.workflow-progress{display:flex;gap:16px;flex-wrap:wrap;font-size:.76rem}.workflow-progress strong{font-weight:650;color:var(--selected-ink)}.workflow-progress span{color:var(--copied-ink);font-weight:650}body[data-generated=false] .section-output{display:none}body[data-generated=false] .section-help{margin-bottom:0}
+    @media(max-width:560px){.section-head{flex-wrap:wrap;gap:8px 10px}.section-head h3{flex-basis:calc(100% - 40px)}.workflow-badge{margin-left:37px}.workflow-summary{padding:12px}.workflow-progress{width:100%}}
+    @media print{.workflow-summary,.workflow-badge{display:none!important}.teams-section[data-workflow=copied],.combined-card[data-workflow=copied]{background:white!important;border-color:#bbb!important}.teams-section[data-workflow=copied] .card-head{background:white!important}}
+  </style>
+</head>
+<body data-generated="false">
+  <main class="page">
+    <header class="masthead">
+      <div class="brand"><div class="brand-icon" aria-hidden="true"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5v18h14V3h-3M9 2h6v4H9zM8 12l2 2 5-5M8 18h8"/></svg></div><div><p class="brand-title">Attendance support</p><p class="brand-caption">GCSE Mathematics · SIP workspace</p></div></div>
+      <div class="masthead-tools"><div class="clock"><strong id="todayLabel">Checking UK date…</strong><span id="clockLabel">--:--:--</span> · UK time</div><button type="button" class="icon-button" id="themeButton" aria-pressed="false" aria-label="Switch to dark mode"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 13a8 8 0 1 1-9-9 6 6 0 0 0 9 9Z"/></svg><span class="theme-text" id="themeLabel">Dark mode</span></button></div>
+    </header>
+    <section class="intro" aria-labelledby="pageTitle"><div><h1 id="pageTitle">Supportive Improvement Plan</h1><p>Create the nine ProMonitor meeting sections and a Teams message. Choose the wording from dropdowns; the course, attendance period and review date are set automatically.</p></div><div class="threshold-chip"><strong>Below 70%</strong><span>Attendance trigger</span></div></section>
+    <noscript><p class="noscript">Enable JavaScript to calculate the term-time review date and generate the SIP texts.</p></noscript>
+    <div class="setup-grid">
+      <form id="sipForm" class="card" novalidate autocomplete="off">
+        <div class="card-head"><div class="heading-wrap"><span class="section-number" aria-hidden="true">01</span><h2>Student details</h2></div><span class="quiet-label">Three required fields</span></div>
+        <div class="form-body">
+          <div class="course-context"><p class="fixed-course" id="courseLabel">GCSE Mathematics</p><p class="fixed-period"><span>Attendance reporting period</span><strong id="reportingPeriodLabel">21 September 2026 to today</strong></p><p class="field-note">Set automatically when you generate the texts.</p></div>
+          <div class="field-grid">
+            <div class="field"><label for="studentNumber">Student number</label><input type="text" id="studentNumber" name="studentNumber" maxlength="40" required placeholder="e.g. 00123456" spellcheck="false" autocomplete="off" aria-describedby="numberError"><p class="field-error" id="numberError" hidden></p></div>
+            <div class="field"><label for="studentName">Student name</label><input type="text" id="studentName" name="studentName" maxlength="120" required placeholder="Full name" autocomplete="off" spellcheck="false" aria-describedby="nameError"><p class="field-error" id="nameError" hidden></p></div>
+          </div>
+          <div class="field attendance-field"><label for="attendance">Recorded attendance</label><div class="attendance-row"><div class="percent-wrap"><input type="text" id="attendance" name="attendance" required inputmode="decimal" maxlength="12" placeholder="e.g. 64.5" spellcheck="false" aria-describedby="attendanceHelp attendanceError attendancePreview"><span class="percent-symbol" aria-hidden="true">%</span></div><div id="attendancePreview" class="attendance-preview" role="status" aria-live="polite" aria-atomic="true"><strong>Attendance below 70%</strong>Enter the recorded figure.</div></div><p class="field-note" id="attendanceHelp">Use the recorded GCSE Mathematics attendance for the reporting period above. Decimals are accepted.</p><p class="field-error" id="attendanceError" hidden></p></div>
+          <div class="field stage-field"><label for="disciplinaryStage">Current disciplinary status</label><select id="disciplinaryStage" name="disciplinaryStage" aria-describedby="stageHelp"><option value="unknown" selected>Not confirmed — include both possible routes</option><option value="none">No Stage 1 plan currently in place</option><option value="stage1">Stage 1 plan already in place</option></select><p class="field-note" id="stageHelp">Use the current recorded status. This sets the Stage 1 / next-stage wording in the plan and Teams message.</p></div>
+          <div class="form-actions"><button type="submit" class="button primary" id="generateButton">Generate SIP sections <span aria-hidden="true">→</span></button><button type="reset" class="button" id="nextButton">Next student</button></div><p id="formFeedback" class="form-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+        </div>
+      </form>
+      <section class="card schedule-card" aria-labelledby="scheduleHeading">
+        <div class="card-head schedule-head"><div class="heading-wrap"><span class="section-number" aria-hidden="true">02</span><h2 id="scheduleHeading">Issue &amp; review dates</h2></div><span class="calendar-tag">2026–27 calendar</span></div>
+        <div class="schedule-body">
+          <div class="date-path"><div class="date-block"><p class="date-caption" id="issueCaption">Date of issue · today</p><time class="date-value" id="issueDate">—</time><p class="date-weekday" id="issueWeekday">—</p></div><div class="date-block review"><p class="date-caption">Review date · automatic</p><time class="date-value" id="reviewDate">—</time><p class="date-weekday" id="reviewWeekday">—</p></div></div>
+          <div class="review-countdown" id="reviewCountdown"><span class="timer-dot" aria-hidden="true"></span><span id="countdownText">Calculating review date…</span></div>
+          <p class="schedule-explanation" id="scheduleExplanation">The review starts at 14 calendar days after issue and moves forward to the next weekday in college term time when needed.</p>
+          <p class="schedule-notice" id="scheduleNotice" hidden></p><p class="date-note" id="planDateNote">The issue date is set automatically when you generate the texts.</p>
+          <details class="date-rules" id="calendarDetails"><summary>Calendar dates &amp; review rules</summary><div class="rules-body"><p><strong>14 calendar days, then the next eligible weekday.</strong> Reviews skip weekends, student holidays, bank holidays, college closures and staff-only days. The review is never brought forward.</p><table class="calendar-table"><caption class="sr-only">Eligible student review windows, Monday to Friday only</caption><thead><tr><th scope="col">Teaching block</th><th scope="col">Eligible date range</th></tr></thead><tbody id="calendarRows"></tbody></table><p><strong>Other excluded dates:</strong> Monday 3 May 2027 is a bank holiday. Monday 9 November 2026, Friday 18 December 2026 and Monday 12 April 2027 are staff-development days, already outside the windows above.</p><p><strong>November note:</strong> 2–6 November 2026 is an unnumbered exam week in the supplied calendar; normal teaching is not confirmed, so automatic reviews skip it.</p><p><strong>Source:</strong> <cite>College Calendar 2026–27 FINAL.pdf</cite>, embedded in your supplied calendar. The last supported review day is <strong>Friday 2 July 2027</strong>. Future academic-year dates must be added to this app before it can schedule later reviews.</p><p>These dates follow the general student calendar. They do not book a meeting or check an individual timetable.</p></div></details>
+        </div>
+      </section>
+    </div>
+    <section class="results-section" aria-labelledby="resultsHeading">
+      <div class="results-head"><div><h2 id="resultsHeading" class="results-title" tabindex="-1">ProMonitor meeting sections</h2><p class="results-subtitle" id="resultsSubtitle">Choose the wording for each section, then generate and copy into the matching ProMonitor fields.</p></div><div class="result-actions"><a href="#teamsHeading" class="button small-button jump-button">Go to Teams message</a><button type="button" class="button small-button" id="reminderButton" disabled title="Download an all-day review event with a one-day reminder">Save review reminder</button><button type="button" class="button small-button" id="downloadButton" disabled>Save texts</button><button type="button" class="button small-button" id="printButton" disabled>Print</button></div></div>
+      <p class="section-guide">Work down the list and choose one option for each section, then generate the texts. After generation, changing a dropdown updates its box. Use the Student’s comments options for either attendance or non-attendance at the meeting.</p>
+      <div class="workflow-summary"><div class="workflow-legend" aria-label="Section colour key"><span class="legend-item pending"><i aria-hidden="true"></i>Choose an option</span><span class="legend-item selected"><i aria-hidden="true"></i>Option selected</span><span class="legend-item copied"><i aria-hidden="true"></i>Copied</span></div><div class="workflow-progress" aria-live="polite" aria-atomic="true"><strong id="selectionProgress">0 of 9 selected</strong><span id="copyProgress">0 of 9 copied</span></div></div>
+      <p class="global-feedback" id="globalFeedback" role="status" aria-live="polite" aria-atomic="true"></p>
+      <div class="sections-list">
+        <article class="card section-card" id="reviewCard" data-workflow="pending" data-section="review" aria-labelledby="reviewHeading">
+          <div class="section-head"><span class="section-index" aria-hidden="true">01</span><h3 id="reviewHeading">Agreed review date</h3><span class="workflow-badge" id="reviewWorkflow" aria-live="polite" aria-atomic="true">Choose an option</span></div>
+          <div class="section-body"><label for="reviewSelect" class="dropdown-label">Choose wording</label><select id="reviewSelect" name="reviewSelect" aria-describedby="reviewHelp reviewWorkflow"><option value="" disabled selected>Choose an option…</option><option value="full_date">Full date with weekday</option><option value="numeric">Numeric date (DD/MM/YYYY)</option><option value="scheduled_note">Scheduled date; agreement not recorded</option></select><p id="reviewHelp" class="section-help">All options use the same automatic review date. The wording does not assume the student agreed to it.</p><div class="section-output"><label for="reviewText" class="output-instructions">Generated automatically from this plan.</label><textarea id="reviewText" class="output-text section-text" readonly autocomplete="off" spellcheck="true" placeholder="Generate the SIP to fill this section." aria-describedby="reviewStatus reviewCount"></textarea><div class="print-copy" id="reviewPrint"></div><div class="section-bottom"><span id="reviewCount">0 words</span><span id="reviewStatus">Not generated</span></div><button type="button" class="button copy-button section-copy" id="reviewCopy" aria-label="Copy Agreed review date" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span id="reviewCopyLabel">Copy section</span></button><p class="copy-feedback" id="reviewFeedback" role="status" aria-live="polite" aria-atomic="true"></p></div></div>
+        </article>
+        <article class="card section-card" id="reasonCard" data-workflow="pending" data-section="reason" aria-labelledby="reasonHeading">
+          <div class="section-head"><span class="section-index" aria-hidden="true">02</span><h3 id="reasonHeading">What had led to this meeting?</h3><span class="workflow-badge" id="reasonWorkflow" aria-live="polite" aria-atomic="true">Choose an option</span></div>
+          <div class="section-body"><label for="reasonSelect" class="dropdown-label">Choose wording</label><select id="reasonSelect" name="reasonSelect" aria-describedby="reasonHelp reasonWorkflow"><option value="" disabled selected>Choose an option…</option><option value="attendance_below70">Attendance below 70%</option><option value="missed_learning">Attendance and missed learning</option><option value="incomplete_work">Attendance and incomplete work (recorded)</option><option value="continued_absence">Continuing non-attendance (recorded)</option><option value="previous_support">Review recorded attendance support</option></select><p id="reasonHelp" class="section-help">Every option includes the recorded attendance, GCSE Mathematics and the reporting period. Select additional concerns only if recorded.</p><div class="section-output"><label for="reasonText" class="output-instructions">Text to copy · optional edits are available after generation.</label><textarea id="reasonText" class="output-text section-text" readonly autocomplete="off" spellcheck="true" placeholder="Generate the SIP to fill this section." aria-describedby="reasonStatus reasonCount"></textarea><div class="print-copy" id="reasonPrint"></div><div class="section-bottom"><span id="reasonCount">0 words</span><span id="reasonStatus">Not generated</span></div><button type="button" class="button copy-button section-copy" id="reasonCopy" aria-label="Copy What had led to this meeting?" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span id="reasonCopyLabel">Copy section</span></button><p class="copy-feedback" id="reasonFeedback" role="status" aria-live="polite" aria-atomic="true"></p></div></div>
+        </article>
+        <article class="card section-card" id="studentCard" data-workflow="pending" data-section="student" aria-labelledby="studentHeading">
+          <div class="section-head"><span class="section-index" aria-hidden="true">03</span><h3 id="studentHeading">Student&#x27;s comments</h3><span class="workflow-badge" id="studentWorkflow" aria-live="polite" aria-atomic="true">Choose an option</span></div>
+          <div class="section-body"><label for="studentSelect" class="dropdown-label">Meeting attendance and student response</label><select id="studentSelect" name="studentSelect" aria-describedby="studentHelp studentWorkflow"><option value="" disabled selected>Choose meeting response…</option><optgroup label="Did not attend"><option value="absent">N/A — student did not attend</option></optgroup><optgroup label="Attended — attendance and homework"><option value="attendance_acknowledged">Acknowledged the attendance concern</option><option value="attendance_intent">Intends to improve attendance</option><option value="homework_intent">Intends to complete assignments and CENTURY</option><option value="attendance_homework_intent">Intends to improve attendance and homework</option></optgroup><optgroup label="Attended — barriers or support"><option value="support_requested">Requested support</option><option value="travel_reported">Reported travel difficulties</option><option value="other_barriers">Reported other attendance barriers</option></optgroup><optgroup label="Attended — other responses"><option value="attended_not_recorded">Attended; comments not recorded</option><option value="no_additional_comments">Made no additional comments</option><option value="declined_comment">Chose not to comment</option><option value="attendance_queried">Queried the recorded attendance figure</option></optgroup></select><p id="studentHelp" class="section-help">Select the response recorded at the meeting. Options are grouped by attendance, learning, support and other responses. You can edit the generated text to add relevant details or combine comments.</p><div class="section-output"><label for="studentText" class="output-instructions">Review or edit the recorded comments before copying.</label><textarea id="studentText" class="output-text section-text" readonly autocomplete="off" spellcheck="true" placeholder="Generate the SIP to fill this section." aria-describedby="studentStatus studentCount"></textarea><div class="print-copy" id="studentPrint"></div><div class="section-bottom"><span id="studentCount">0 words</span><span id="studentStatus">Not generated</span></div><button type="button" class="button copy-button section-copy" id="studentCopy" aria-label="Copy Student&#x27;s comments" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span id="studentCopyLabel">Copy section</span></button><p class="copy-feedback" id="studentFeedback" role="status" aria-live="polite" aria-atomic="true"></p></div></div>
+        </article>
+        <article class="card section-card" id="staffCard" data-workflow="pending" data-section="staff" aria-labelledby="staffHeading">
+          <div class="section-head"><span class="section-index" aria-hidden="true">04</span><h3 id="staffHeading">Staff comments</h3><span class="workflow-badge" id="staffWorkflow" aria-live="polite" aria-atomic="true">Choose an option</span></div>
+          <div class="section-body"><label for="staffSelect" class="dropdown-label">Choose wording</label><select id="staffSelect" name="staffSelect" aria-describedby="staffHelp staffWorkflow"><option value="" disabled selected>Choose an option…</option><option value="attendance_only">Attendance requires improvement</option><option value="engaged_when_present">Engages when present (observed)</option><option value="work_incomplete">Incomplete work (recorded)</option><option value="punctuality">Attendance and lateness (recorded)</option><option value="limited_evidence">Insufficient work to assess progress</option><option value="no_further_comments">No additional staff comments recorded</option></select><p id="staffHelp" class="section-help">Choose only observations supported by your records. Each comment includes the issue and review dates.</p><div class="section-output"><label for="staffText" class="output-instructions">Text to copy · optional edits are available after generation.</label><textarea id="staffText" class="output-text section-text" readonly autocomplete="off" spellcheck="true" placeholder="Generate the SIP to fill this section." aria-describedby="staffStatus staffCount"></textarea><div class="print-copy" id="staffPrint"></div><div class="section-bottom"><span id="staffCount">0 words</span><span id="staffStatus">Not generated</span></div><button type="button" class="button copy-button section-copy" id="staffCopy" aria-label="Copy Staff comments" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span id="staffCopyLabel">Copy section</span></button><p class="copy-feedback" id="staffFeedback" role="status" aria-live="polite" aria-atomic="true"></p></div></div>
+        </article>
+        <article class="card section-card" id="parentCard" data-workflow="pending" data-section="parent" aria-labelledby="parentHeading">
+          <div class="section-head"><span class="section-index" aria-hidden="true">05</span><h3 id="parentHeading">Parent/carer’s/advocate’s comments</h3><span class="workflow-badge" id="parentWorkflow" aria-live="polite" aria-atomic="true">Choose an option</span></div>
+          <div class="section-body"><label for="parentSelect" class="dropdown-label">Choose wording</label><select id="parentSelect" name="parentSelect" aria-describedby="parentHelp parentWorkflow"><option value="" disabled selected>Choose an option…</option><option value="not_recorded">No comments recorded</option><option value="not_present">Not present; no comments (confirmed)</option><option value="awaiting_response">Comments requested; response pending</option><option value="supports_attendance">Supports improved attendance (recorded)</option><option value="concerns_raised">Concerns raised (recorded)</option><option value="not_applicable">Not applicable (confirmed)</option></select><p id="parentHelp" class="section-help">Do not infer attendance or views. Use a recorded option only when the information is known.</p><div class="section-output"><label for="parentText" class="output-instructions">Text to copy · optional edits are available after generation.</label><textarea id="parentText" class="output-text section-text" readonly autocomplete="off" spellcheck="true" placeholder="Generate the SIP to fill this section." aria-describedby="parentStatus parentCount"></textarea><div class="print-copy" id="parentPrint"></div><div class="section-bottom"><span id="parentCount">0 words</span><span id="parentStatus">Not generated</span></div><button type="button" class="button copy-button section-copy" id="parentCopy" aria-label="Copy Parent/carer’s/advocate’s comments" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span id="parentCopyLabel">Copy section</span></button><p class="copy-feedback" id="parentFeedback" role="status" aria-live="polite" aria-atomic="true"></p></div></div>
+        </article>
+        <article class="card section-card" id="safetyCard" data-workflow="pending" data-section="safety" aria-labelledby="safetyHeading">
+          <div class="section-head"><span class="section-index" aria-hidden="true">06</span><h3 id="safetyHeading">Any Health and Safety risks arising</h3><span class="workflow-badge" id="safetyWorkflow" aria-live="polite" aria-atomic="true">Choose an option</span></div>
+          <div class="section-body"><label for="safetySelect" class="dropdown-label">Choose wording</label><select id="safetySelect" name="safetySelect" aria-describedby="safetyHelp safetyWorkflow"><option value="" disabled selected>Choose an option…</option><option value="not_assessed">Not assessed in this meeting</option><option value="none_identified">No additional risks identified (checked)</option><option value="existing_assessment">Existing risk assessment recorded</option><option value="review_required">Further risk review required</option><option value="concern_recorded">Concern recorded; follow college procedure</option></select><p id="safetyHelp" class="section-help">Not assessed and no risks identified are different. Select a recorded concern only where one is known.</p><div class="section-output"><label for="safetyText" class="output-instructions">Text to copy · optional edits are available after generation.</label><textarea id="safetyText" class="output-text section-text" readonly autocomplete="off" spellcheck="true" placeholder="Generate the SIP to fill this section." aria-describedby="safetyStatus safetyCount"></textarea><div class="print-copy" id="safetyPrint"></div><div class="section-bottom"><span id="safetyCount">0 words</span><span id="safetyStatus">Not generated</span></div><button type="button" class="button copy-button section-copy" id="safetyCopy" aria-label="Copy Any Health and Safety risks arising" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span id="safetyCopyLabel">Copy section</span></button><p class="copy-feedback" id="safetyFeedback" role="status" aria-live="polite" aria-atomic="true"></p></div></div>
+        </article>
+        <article class="card section-card" id="mitigationCard" data-workflow="pending" data-section="mitigation" aria-labelledby="mitigationHeading">
+          <div class="section-head"><span class="section-index" aria-hidden="true">07</span><h3 id="mitigationHeading">Any mitigating factors</h3><span class="workflow-badge" id="mitigationWorkflow" aria-live="polite" aria-atomic="true">Choose an option</span></div>
+          <div class="section-body"><label for="mitigationSelect" class="dropdown-label">Choose wording</label><select id="mitigationSelect" name="mitigationSelect" aria-describedby="mitigationHelp mitigationWorkflow"><option value="" disabled selected>Choose an option…</option><option value="not_established">Not yet established</option><option value="none_identified">No mitigating reason identified</option><option value="travel">Travel difficulties (reported)</option><option value="financial">Financial difficulties (reported)</option><option value="caring">Caring responsibilities (reported)</option><option value="personal_family">Personal or family circumstances (reported)</option><option value="health">Health or wellbeing circumstances (reported)</option><option value="other">Other reasons (reported)</option><option value="awaiting_information">Clarification requested; information pending</option></select><p id="mitigationHelp" class="section-help">Reported reasons are not assumed facts. “No reason identified” does not claim that no reason exists.</p><div class="section-output"><label for="mitigationText" class="output-instructions">Text to copy · optional edits are available after generation.</label><textarea id="mitigationText" class="output-text section-text" readonly autocomplete="off" spellcheck="true" placeholder="Generate the SIP to fill this section." aria-describedby="mitigationStatus mitigationCount"></textarea><div class="print-copy" id="mitigationPrint"></div><div class="section-bottom"><span id="mitigationCount">0 words</span><span id="mitigationStatus">Not generated</span></div><button type="button" class="button copy-button section-copy" id="mitigationCopy" aria-label="Copy Any mitigating factors" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span id="mitigationCopyLabel">Copy section</span></button><p class="copy-feedback" id="mitigationFeedback" role="status" aria-live="polite" aria-atomic="true"></p></div></div>
+        </article>
+        <article class="card section-card" id="supportCard" data-workflow="pending" data-section="support" aria-labelledby="supportHeading">
+          <div class="section-head"><span class="section-index" aria-hidden="true">08</span><h3 id="supportHeading">What support has been offered or might be required?</h3><span class="workflow-badge" id="supportWorkflow" aria-live="polite" aria-atomic="true">Choose an option</span></div>
+          <div class="section-body"><label for="supportSelect" class="dropdown-label">Choose wording</label><select id="supportSelect" name="supportSelect" aria-describedby="supportHelp supportWorkflow"><option value="" disabled selected>Choose an option…</option><option value="not_recorded">No specific support offer recorded yet</option><option value="discussion_proposed">Teacher/tutor discussion proposed</option><option value="catchup_proposed">Catch-up support proposed</option><option value="travel_proposed">Travel support review proposed</option><option value="pastoral_proposed">Pastoral support referral proposed</option><option value="offer_recorded">Support offer already recorded</option><option value="support_in_place">Existing support in place (confirmed)</option><option value="referral_pending">Referral submitted; response pending</option></select><p id="supportHelp" class="section-help">Distinguish a possible next action from support already offered or in place. These details are not added to Teams automatically.</p><div class="section-output"><label for="supportText" class="output-instructions">Text to copy · optional edits are available after generation.</label><textarea id="supportText" class="output-text section-text" readonly autocomplete="off" spellcheck="true" placeholder="Generate the SIP to fill this section." aria-describedby="supportStatus supportCount"></textarea><div class="print-copy" id="supportPrint"></div><div class="section-bottom"><span id="supportCount">0 words</span><span id="supportStatus">Not generated</span></div><button type="button" class="button copy-button section-copy" id="supportCopy" aria-label="Copy What support has been offered or might be required?" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span id="supportCopyLabel">Copy section</span></button><p class="copy-feedback" id="supportFeedback" role="status" aria-live="polite" aria-atomic="true"></p></div></div>
+        </article>
+        <article class="card section-card" id="stepsCard" data-workflow="pending" data-section="steps" aria-labelledby="stepsHeading">
+          <div class="section-head"><span class="section-index" aria-hidden="true">09</span><h3 id="stepsHeading">What are the next steps?</h3><span class="workflow-badge" id="stepsWorkflow" aria-live="polite" aria-atomic="true">Choose an option</span></div>
+          <div class="section-body"><label for="stepsSelect" class="dropdown-label">Choose wording</label><select id="stepsSelect" name="stepsSelect" aria-describedby="stepsHelp stepsWorkflow"><option value="" disabled selected>Choose an option…</option><option value="standard">Attendance, homework and scheduled review</option><option value="lesson_check">Check attendance at each lesson</option><option value="weekly_check">Weekly attendance and work check</option><option value="catchup_priority">Prioritise outstanding assignments</option><option value="century_priority">Prioritise CENTURY assessment targets</option><option value="followup">Teacher/tutor follow-up planned</option></select><p id="stepsHelp" class="section-help">Every option requires attendance, assignments and CENTURY homework, followed by the scheduled review. Choose any additional action you intend to carry out.</p><div class="section-output"><label for="stepsText" class="output-instructions">Text to copy · optional edits are available after generation.</label><textarea id="stepsText" class="output-text section-text" readonly autocomplete="off" spellcheck="true" placeholder="Generate the SIP to fill this section." aria-describedby="stepsStatus stepsCount"></textarea><div class="print-copy" id="stepsPrint"></div><div class="section-bottom"><span id="stepsCount">0 words</span><span id="stepsStatus">Not generated</span></div><button type="button" class="button copy-button section-copy" id="stepsCopy" aria-label="Copy What are the next steps?" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span id="stepsCopyLabel">Copy section</span></button><p class="copy-feedback" id="stepsFeedback" role="status" aria-live="polite" aria-atomic="true"></p></div></div>
+        </article>
+      </div>
+      <div class="record-bottom-actions"><button type="submit" form="sipForm" class="button primary">Generate SIP sections</button><p>Use this after entering the student details. Changing a dropdown after generation updates its wording straight away.</p></div>
+      <details class="card combined-card" id="fullRecordDetails"><summary>Complete ProMonitor record · all nine sections together</summary><div class="combined-body"><label for="promonitorText" class="output-instructions">This combines the sections above, including any edits. Edit individual sections to update it.</label><textarea id="promonitorText" class="output-text" readonly autocomplete="off" placeholder="The complete ProMonitor record will appear here after generation." aria-describedby="promonitorStatus promonitorCount"></textarea><div class="output-meta"><span id="promonitorCount">0 words</span><span id="promonitorStatus">Not generated</span></div><button type="button" class="button copy-button" id="promonitorCopy" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span id="promonitorCopyLabel">Copy complete ProMonitor record</span></button><p class="copy-feedback" id="promonitorFeedback" role="status" aria-live="polite" aria-atomic="true"></p></div></details>
+      <article class="print-record"><h2>GCSE Mathematics · ProMonitor SIP record</h2><div class="print-copy" id="promonitorPrint"></div></article>
+      <article id="teamsCard" class="card output-card teams-section" aria-labelledby="teamsHeading"><div class="card-head output-head"><div><div class="app-label"><span class="app-icon teams-icon" aria-hidden="true">T</span><h2 id="teamsHeading" tabindex="-1">Teams message</h2></div><p class="output-description">GCSE Mathematics attendance, homework and the applicable disciplinary next step</p></div><span class="output-status" id="teamsStatus">Not generated</span></div><div class="output-body"><label for="teamsText" class="output-instructions">Review or edit the message before copying. The dates and attendance period match this plan.</label><textarea id="teamsText" class="output-text" readonly spellcheck="true" autocomplete="off" placeholder="The student’s Teams message will appear here, including assignments, targeted CENTURY homework and Stage 1 / next-stage wording." aria-describedby="teamsStatus teamsCount"></textarea><div class="print-copy" id="teamsPrint"></div><div class="output-meta"><span id="teamsCount">0 words</span><span>Paste into the correct student’s chat</span></div><button type="button" class="button copy-button" id="teamsCopy" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span id="teamsCopyLabel">Copy Teams message</span></button><p class="copy-feedback" id="teamsFeedback" role="status" aria-live="polite" aria-atomic="true"></p></div></article>
+    </section>
+    <footer class="footer"><p><strong>Works offline.</strong> No accounts, uploads or automatic sending. Student details are kept only in this open page. “Next student” clears the sections and Teams message and resets the dropdowns; copied text and downloaded files remain.</p><p>UK dates use your device’s clock. The countdown updates while this page is open; import the review reminder into your calendar for a later alert.</p></footer>
+  </main>
+  <script id="sipCore">
+const SIPCore = (() => {
+  'use strict';
+
+  const freezeDeep = value => {
+    if (value && typeof value === 'object' && !Object.isFrozen(value)) {
+      Object.values(value).forEach(freezeDeep);
+      Object.freeze(value);
+    }
+    return value;
+  };
+
+  // Dates are copied from the supplied calendar. These are conservative
+  // student-review windows, not inferred term dates for another academic year.
+  const calendar = freezeDeep({
+    sourceTitle: 'College Calendar 2026–27 FINAL.pdf (supplied calendar)',
+    coverageStart: '2026-08-01',
+    coverageEnd: '2027-08-31',
+    firstReview: '2026-09-07',
+    lastReview: '2027-07-02',
+    ranges: [
+      { start: '2026-09-07', end: '2026-10-23', label: 'Autumn · first teaching block' },
+      { start: '2026-11-10', end: '2026-12-17', label: 'Autumn · second teaching block' },
+      { start: '2027-01-04', end: '2027-02-12', label: 'Spring · first teaching block' },
+      { start: '2027-02-22', end: '2027-03-25', label: 'Spring · second teaching block' },
+      { start: '2027-04-13', end: '2027-05-28', label: 'Summer · first teaching block' },
+      { start: '2027-06-07', end: '2027-07-02', label: 'Summer · second teaching block' }
+    ],
+    excluded: [
+      { start: '2026-08-03', end: '2026-08-18', label: 'Student holiday dates marked in the source' },
+      { start: '2026-08-31', end: '2026-08-31', label: 'Bank holiday' },
+      { start: '2026-10-26', end: '2026-10-30', label: 'Student holiday' },
+      { start: '2026-11-02', end: '2026-11-06', label: 'Unnumbered exam week · normal teaching is not confirmed' },
+      { start: '2026-11-09', end: '2026-11-09', label: 'Staff development' },
+      { start: '2026-12-18', end: '2026-12-18', label: 'Staff development' },
+      { start: '2026-12-21', end: '2026-12-24', label: 'Student holiday' },
+      { start: '2026-12-25', end: '2026-12-25', label: 'Bank holiday' },
+      { start: '2026-12-28', end: '2026-12-28', label: 'Bank holiday' },
+      { start: '2026-12-29', end: '2026-12-31', label: 'College closure' },
+      { start: '2027-01-01', end: '2027-01-01', label: 'Bank holiday' },
+      { start: '2027-02-15', end: '2027-02-19', label: 'Student holiday' },
+      { start: '2027-03-26', end: '2027-03-26', label: 'Bank holiday' },
+      { start: '2027-03-29', end: '2027-03-29', label: 'Bank holiday' },
+      { start: '2027-03-30', end: '2027-04-09', label: 'Student holiday' },
+      { start: '2027-04-12', end: '2027-04-12', label: 'Staff development' },
+      { start: '2027-05-03', end: '2027-05-03', label: 'Bank holiday' },
+      { start: '2027-05-31', end: '2027-05-31', label: 'Bank holiday' },
+      { start: '2027-06-01', end: '2027-06-04', label: 'Student holiday' },
+      { start: '2027-07-05', end: '2027-07-08', label: 'Staff planning' },
+      { start: '2027-07-09', end: '2027-07-22', label: 'Student holiday dates marked in the source' },
+      { start: '2027-07-26', end: '2027-08-17', label: 'Student holiday dates marked in the source' },
+      { start: '2027-08-30', end: '2027-08-30', label: 'Bank holiday' }
+    ],
+    notes: [
+      'Reviews start from the issue date plus 14 calendar days, then move forward to the next eligible Monday–Friday date.',
+      'Student holidays, bank holidays, college closures and staff development dates are excluded.',
+      '2–6 November 2026 is an unnumbered exam week. Normal teaching is not confirmed by the supplied calendar, so automatic reviews skip it; 9 November is a staff development day.',
+      '2 July 2027 is the last supported student review date. The supplied calendar does not establish teaching dates for 2027–28.',
+      'The college calendar does not include individual student timetables. These are review dates, not booked appointments.'
+    ]
+  });
+
+  const dayMs = 86400000;
+  const londonDate = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/London', year: 'numeric', month: '2-digit', day: '2-digit'
+  });
+  const londonClock = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23'
+  });
+  const datesWithWeekday = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+  });
+  const datesWithoutWeekday = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'UTC', day: 'numeric', month: 'long', year: 'numeric'
+  });
+  const percentageFormat = new Intl.NumberFormat('en-GB', { maximumFractionDigits: 2 });
+
+  function fromISO(iso) {
+    if (typeof iso !== 'string' || !/^\d{4}-\d{2}-\d{2}$/u.test(iso)) return null;
+    const [year, month, day] = iso.split('-').map(Number);
+    if (year < 1 || month < 1 || month > 12 || day < 1 || day > 31) return null;
+    const date = new Date(0);
+    date.setUTCHours(0, 0, 0, 0);
+    date.setUTCFullYear(year, month - 1, day);
+    if (date.getUTCFullYear() !== year || date.getUTCMonth() !== month - 1 || date.getUTCDate() !== day) return null;
+    return date;
+  }
+
+  function isValidISO(iso) { return fromISO(iso) !== null; }
+
+  function requireDate(iso) {
+    const date = fromISO(iso);
+    if (!date) throw new RangeError('Enter a valid date in YYYY-MM-DD format.');
+    return date;
+  }
+
+  function isoFromDate(date) {
+    const year = date.getUTCFullYear();
+    if (!Number.isFinite(date.getTime()) || year < 1 || year > 9999) throw new RangeError('Date is outside the supported range.');
+    return `${String(year).padStart(4, '0')}-${String(date.getUTCMonth() + 1).padStart(2, '0')}-${String(date.getUTCDate()).padStart(2, '0')}`;
+  }
+
+  function todayISO(now = new Date()) {
+    const parts = Object.fromEntries(londonDate.formatToParts(now).map(part => [part.type, part.value]));
+    return `${parts.year.padStart(4, '0')}-${parts.month}-${parts.day}`;
+  }
+
+  function clockLabel(now = new Date()) { return londonClock.format(now); }
+
+  function formatDate(iso, { weekday = true } = {}) {
+    return (weekday ? datesWithWeekday : datesWithoutWeekday).format(requireDate(iso));
+  }
+
+  function addDays(iso, amount) {
+    if (!Number.isSafeInteger(amount)) throw new RangeError('The number of days must be an integer.');
+    const date = requireDate(iso);
+    date.setUTCDate(date.getUTCDate() + amount);
+    return isoFromDate(date);
+  }
+
+  function dayDifference(from, to) { return (requireDate(to).getTime() - requireDate(from).getTime()) / dayMs; }
+
+  function inRange(iso, range) { return iso >= range.start && iso <= range.end; }
+
+  function eligible(iso) {
+    const date = fromISO(iso);
+    if (!date || date.getUTCDay() === 0 || date.getUTCDay() === 6) return false;
+    return calendar.ranges.some(range => inRange(iso, range)) && !calendar.excluded.some(range => inRange(iso, range));
+  }
+
+  function reviewFor(issueISO) {
+    if (!isValidISO(issueISO)) return { ok: false, error: 'The issue date is not a valid calendar date.' };
+    if (issueISO < calendar.coverageStart || issueISO > calendar.coverageEnd) {
+      return { ok: false, error: `The issue date is outside the supplied calendar (${formatDate(calendar.coverageStart, { weekday: false })}–${formatDate(calendar.coverageEnd, { weekday: false })}). The app’s calendar needs to be updated with confirmed term dates for the relevant academic year.` };
+    }
+    const target = addDays(issueISO, 14);
+    if (target > calendar.lastReview) {
+      return { ok: false, target, error: `There is no confirmed student review day on or after ${formatDate(target)} in the supplied calendar. Its last supported review date is ${formatDate(calendar.lastReview)}. The next academic year’s confirmed term dates are needed before a SIP can be generated.` };
+    }
+    let review = target;
+    while (review <= calendar.lastReview && !eligible(review)) review = addDays(review, 1);
+    if (review > calendar.lastReview) return { ok: false, target, error: 'No eligible review date is available in the supplied college calendar.' };
+    const shiftDays = dayDifference(target, review);
+    const adjusted = shiftDays > 0;
+    let reason = adjusted
+      ? `The two-week date (${formatDate(target)}) is not an eligible student review day. The review moves forward ${shiftDays} ${shiftDays === 1 ? 'day' : 'days'} to the next weekday in the supplied teaching calendar.`
+      : 'The review is exactly 14 calendar days after issue and falls on an eligible weekday in the supplied teaching calendar.';
+    if (adjusted && target <= '2026-11-06' && review >= '2026-11-02') {
+      reason += ' The unnumbered exam week, 2–6 November, is excluded because normal teaching is not confirmed; 9 November is staff development.';
+    }
+    return { ok: true, issue: issueISO, target, review, adjusted, shiftDays, elapsedDays: dayDifference(issueISO, review), reason };
+  }
+
+  function parseAttendance(raw) {
+    const input = String(raw ?? '').trim().replace(/%\s*$/u, '').trim();
+    if (!input) return { ok: false, error: 'Enter the recorded attendance percentage. A blank field is not 0%.' };
+    if (!/^(?:\d{1,3}(?:[.,]\d{1,2})?|[.,]\d{1,2})$/u.test(input)) {
+      return { ok: false, error: 'Enter attendance from 0 to 100 with no more than two decimal places, for example 64.5.' };
+    }
+    const [whole = '0', fraction = ''] = input.replace(',', '.').split('.');
+    const hundredths = Number(whole || '0') * 100 + Number(fraction.padEnd(2, '0'));
+    if (!Number.isInteger(hundredths) || hundredths < 0 || hundredths > 10000) {
+      return { ok: false, error: 'Attendance must be between 0% and 100%.' };
+    }
+    return { ok: true, hundredths, value: hundredths / 100, display: percentageFormat.format(hundredths / 100) };
+  }
+
+  return Object.freeze({ calendar, todayISO, clockLabel, formatDate, isValidISO, addDays, dayDifference, eligible, reviewFor, parseAttendance });
+})();
+
+  </script>
+  <script id="sipTemplates">
+const SIPTemplates = (() => {
+  'use strict';
+
+  const course = 'GCSE Mathematics';
+  const reportingStart = '2026-09-21';
+  const absentStudentComment = 'N/A — the student did not attend the meeting.';
+
+  function freezeDeep(value) {
+    if (value && typeof value === 'object' && !Object.isFrozen(value)) {
+      Object.values(value).forEach(freezeDeep);
+      Object.freeze(value);
+    }
+    return value;
+  }
+
+  const sections = freezeDeep([
+    {
+      key: 'review', title: 'Agreed review date',
+      help: 'All options use the same automatic review date. The wording does not assume the student agreed to it.',
+      defaultValue: 'full_date',
+      options: [
+        { value: 'full_date', label: 'Full date with weekday' },
+        { value: 'numeric', label: 'Numeric date (DD/MM/YYYY)' },
+        { value: 'scheduled_note', label: 'Scheduled date; agreement not recorded' }
+      ]
+    },
+    {
+      key: 'reason', title: 'What had led to this meeting?',
+      help: 'Every option includes the recorded attendance, GCSE Mathematics and the reporting period. Select additional concerns only if recorded.',
+      defaultValue: 'attendance_below70',
+      options: [
+        { value: 'attendance_below70', label: 'Attendance below 70%', text: 'The meeting was arranged to set clear expectations for improved attendance, homework and a scheduled review.' },
+        { value: 'missed_learning', label: 'Attendance and missed learning', text: 'The meeting was arranged to address missed GCSE Mathematics teaching and establish expectations for attendance and catch-up work.' },
+        { value: 'incomplete_work', label: 'Attendance and incomplete work (recorded)', text: 'Incomplete GCSE Mathematics work has also been recorded. The meeting was arranged to address attendance and the completion of outstanding work.' },
+        { value: 'continued_absence', label: 'Continuing non-attendance (recorded)', text: 'Continuing non-attendance has been recorded. The meeting was arranged to set clear expectations for a return to lessons and subsequent review.' },
+        { value: 'previous_support', label: 'Review recorded attendance support', text: 'The meeting was arranged to review the attendance concern alongside support already recorded and identify the next actions.' }
+      ]
+    },
+    {
+      key: 'student', title: "Student's comments",
+      help: 'Select the response recorded at the meeting. Options are grouped by attendance, learning, support and other responses. You can edit the generated text to add relevant details or combine comments.',
+      defaultValue: 'absent',
+      options: [
+        { value: 'absent', group: 'Did not attend', label: 'N/A — student did not attend', text: absentStudentComment },
+        { value: 'attendance_acknowledged', group: 'Attended — attendance and homework', label: 'Acknowledged the attendance concern', text: 'The student attended the meeting and acknowledged the concern about their GCSE Mathematics attendance.' },
+        { value: 'attendance_intent', group: 'Attended — attendance and homework', label: 'Intends to improve attendance', text: 'The student attended the meeting and stated an intention to improve their attendance at GCSE Mathematics lessons.' },
+        { value: 'homework_intent', group: 'Attended — attendance and homework', label: 'Intends to complete assignments and CENTURY', text: 'The student attended the meeting and stated an intention to complete GCSE Mathematics homework, including assignments and the CENTURY nuggets linked to their previous assessment targets.' },
+        { value: 'attendance_homework_intent', group: 'Attended — attendance and homework', label: 'Intends to improve attendance and homework', text: 'The student attended the meeting and stated an intention to improve their GCSE Mathematics attendance and complete homework, including assignments and the CENTURY nuggets linked to their previous assessment targets.' },
+        { value: 'support_requested', group: 'Attended — barriers or support', label: 'Requested support', text: 'The student attended the meeting and requested support.' },
+        { value: 'travel_reported', group: 'Attended — barriers or support', label: 'Reported travel difficulties', text: 'The student attended the meeting and reported that travel difficulties had affected their attendance.' },
+        { value: 'other_barriers', group: 'Attended — barriers or support', label: 'Reported other attendance barriers', text: 'The student attended the meeting and reported other circumstances affecting their attendance.' },
+        { value: 'attended_not_recorded', group: 'Attended — other responses', label: 'Attended; comments not recorded', text: 'The student attended the meeting; their comments have not been recorded.' },
+        { value: 'no_additional_comments', group: 'Attended — other responses', label: 'Made no additional comments', text: 'The student attended the meeting and made no additional comments.' },
+        { value: 'declined_comment', group: 'Attended — other responses', label: 'Chose not to comment', text: 'The student attended the meeting and chose not to comment.' },
+        { value: 'attendance_queried', group: 'Attended — other responses', label: 'Queried the recorded attendance figure', text: 'The student attended the meeting and queried the accuracy of the recorded GCSE Mathematics attendance figure.' }
+      ]
+    },
+    {
+      key: 'staff', title: 'Staff comments',
+      help: 'Choose only observations supported by your records. Each comment includes the issue and review dates.',
+      defaultValue: 'attendance_only',
+      options: [
+        { value: 'attendance_only', label: 'Attendance requires improvement', text: 'Recorded GCSE Mathematics attendance requires improvement. Regular attendance is needed to access teaching and complete learning activities.' },
+        { value: 'engaged_when_present', label: 'Engages when present (observed)', text: 'When present, the student engages with GCSE Mathematics work. More regular attendance is needed to sustain learning.' },
+        { value: 'work_incomplete', label: 'Incomplete work (recorded)', text: 'Recorded GCSE Mathematics work is incomplete. The student needs to attend regularly and complete the outstanding work.' },
+        { value: 'punctuality', label: 'Attendance and lateness (recorded)', text: 'Recorded GCSE Mathematics attendance and punctuality both require improvement. The student needs to attend each scheduled lesson and arrive on time.' },
+        { value: 'limited_evidence', label: 'Insufficient work to assess progress', text: 'The available GCSE Mathematics work provides insufficient evidence to assess current progress reliably. Further completed work is needed alongside improved attendance.' },
+        { value: 'no_further_comments', label: 'No additional staff comments recorded', text: 'No additional staff observations have been recorded beyond the GCSE Mathematics attendance concern.' }
+      ]
+    },
+    {
+      key: 'parent', title: 'Parent/carer’s/advocate’s comments',
+      help: 'Do not infer attendance or views. Use a recorded option only when the information is known.',
+      defaultValue: 'not_recorded',
+      options: [
+        { value: 'not_recorded', label: 'No comments recorded', text: 'No parent/carer/advocate comments have been recorded for this meeting.' },
+        { value: 'not_present', label: 'Not present; no comments (confirmed)', text: 'No parent, carer or advocate attended the meeting, and no comments have been recorded.' },
+        { value: 'awaiting_response', label: 'Comments requested; response pending', text: 'Parent/carer/advocate comments have been requested, and a response is awaited.' },
+        { value: 'supports_attendance', label: 'Supports improved attendance (recorded)', text: 'The parent/carer/advocate has expressed support for improved attendance.' },
+        { value: 'concerns_raised', label: 'Concerns raised (recorded)', text: 'A parent/carer/advocate has raised concerns. Follow-up is required to clarify any action or support needed.' },
+        { value: 'not_applicable', label: 'Not applicable (confirmed)', text: 'Parent/carer/advocate involvement is not applicable to this meeting.' }
+      ]
+    },
+    {
+      key: 'safety', title: 'Any Health and Safety risks arising',
+      help: 'Not assessed and no risks identified are different. Select a recorded concern only where one is known.',
+      defaultValue: 'not_assessed',
+      options: [
+        { value: 'not_assessed', label: 'Not assessed in this meeting', text: 'Health and Safety risks have not been assessed in this meeting.' },
+        { value: 'none_identified', label: 'No additional risks identified (checked)', text: 'No additional Health and Safety risks have been identified from the information reviewed for this meeting.' },
+        { value: 'existing_assessment', label: 'Existing risk assessment recorded', text: 'An existing risk assessment is recorded. Relevant controls should continue to be followed and reviewed by the appropriate staff.' },
+        { value: 'review_required', label: 'Further risk review required', text: 'Further review is required before a conclusion about Health and Safety risks can be recorded.' },
+        { value: 'concern_recorded', label: 'Concern recorded; follow college procedure', text: 'A Health and Safety concern has been recorded. It requires follow-up through the college’s established reporting and support procedures.' }
+      ]
+    },
+    {
+      key: 'mitigation', title: 'Any mitigating factors',
+      help: 'Reported reasons are not assumed facts. “No reason identified” does not claim that no reason exists.',
+      defaultValue: 'not_established',
+      options: [
+        { value: 'not_established', label: 'Not yet established', text: 'Mitigating factors have not yet been established. No conclusion has been drawn about the reasons for non-attendance.' },
+        { value: 'none_identified', label: 'No mitigating reason identified', text: 'No mitigating reason for the non-attendance has been identified from the information currently available.' },
+        { value: 'travel', label: 'Travel difficulties (reported)', text: 'Travel difficulties have been reported as a factor affecting attendance. The circumstances and any appropriate travel support should be reviewed.' },
+        { value: 'financial', label: 'Financial difficulties (reported)', text: 'Financial difficulties have been reported as a factor affecting attendance. The circumstances and any appropriate financial or practical support should be reviewed.' },
+        { value: 'caring', label: 'Caring responsibilities (reported)', text: 'Caring responsibilities have been reported as a factor affecting attendance. The circumstances and any suitable support or arrangements should be reviewed.' },
+        { value: 'personal_family', label: 'Personal or family circumstances (reported)', text: 'Personal or family circumstances have been reported as a factor affecting attendance. Relevant support may need to be considered.' },
+        { value: 'health', label: 'Health or wellbeing circumstances (reported)', text: 'Health or wellbeing circumstances have been reported as a factor affecting attendance. Any relevant support or existing arrangements should be considered.' },
+        { value: 'other', label: 'Other reasons (reported)', text: 'Other reasons affecting attendance have been reported. The relevant circumstances need to be considered when reviewing this plan.' },
+        { value: 'awaiting_information', label: 'Clarification requested; information pending', text: 'Clarification of the reasons for non-attendance has been requested, and further information is awaited.' }
+      ]
+    },
+    {
+      key: 'support', title: 'What support has been offered or might be required?',
+      help: 'Distinguish a possible next action from support already offered or in place. These details are not added to Teams automatically.',
+      defaultValue: 'not_recorded',
+      options: [
+        { value: 'not_recorded', label: 'No specific support offer recorded yet', text: 'No specific support offer has been recorded at this stage. Attendance barriers and any support requirements need to be reviewed.' },
+        { value: 'discussion_proposed', label: 'Teacher/tutor discussion proposed', text: 'A discussion with the GCSE Mathematics teacher or tutor is proposed to identify attendance barriers and appropriate support.' },
+        { value: 'catchup_proposed', label: 'Catch-up support proposed', text: 'GCSE Mathematics catch-up support may be required to address missed learning. Suitable arrangements should be considered.' },
+        { value: 'travel_proposed', label: 'Travel support review proposed', text: 'A review of possible travel support is proposed. Suitable arrangements have yet to be confirmed.' },
+        { value: 'pastoral_proposed', label: 'Pastoral support referral proposed', text: 'A referral to the appropriate pastoral support service is proposed to explore attendance barriers and suitable support.' },
+        { value: 'offer_recorded', label: 'Support offer already recorded', text: 'A support offer is already recorded. Its relevance and any next actions should be reviewed alongside attendance.' },
+        { value: 'support_in_place', label: 'Existing support in place (confirmed)', text: 'Existing support is in place. Its effectiveness and any changes needed should be reviewed alongside GCSE Mathematics attendance.' },
+        { value: 'referral_pending', label: 'Referral submitted; response pending', text: 'A support referral has been submitted, and a response is awaited. Any interim support requirements should be considered.' }
+      ]
+    },
+    {
+      key: 'steps', title: 'What are the next steps?',
+      help: 'Every option requires attendance, assignments and CENTURY homework, followed by the scheduled review. Choose any additional action you intend to carry out.',
+      defaultValue: 'standard',
+      options: [
+        { value: 'standard', label: 'Attendance, homework and scheduled review', text: '' },
+        { value: 'lesson_check', label: 'Check attendance at each lesson', text: 'Attendance will be checked at each GCSE Mathematics lesson.' },
+        { value: 'weekly_check', label: 'Weekly attendance and work check', text: 'A weekly check of GCSE Mathematics attendance and completed homework is planned before the review.' },
+        { value: 'catchup_priority', label: 'Prioritise outstanding assignments', text: 'Outstanding GCSE Mathematics assignments should be prioritised alongside current lesson work.' },
+        { value: 'century_priority', label: 'Prioritise CENTURY assessment targets', text: 'Previous assessment targets should be used to prioritise which CENTURY nuggets are completed first.' },
+        { value: 'followup', label: 'Teacher/tutor follow-up planned', text: 'A teacher/tutor follow-up is planned before the review to check attendance, completed work and any relevant support.' }
+      ]
+    }
+  ]);
+
+  const teamsStepEmphasis = Object.freeze({
+    standard: '',
+    lesson_check: 'Your attendance will be checked at each GCSE Mathematics lesson.',
+    weekly_check: 'Your attendance and completed homework will be checked weekly before the review.',
+    catchup_priority: 'Prioritise any outstanding GCSE Mathematics assignments alongside your current lesson work.',
+    century_priority: 'Use your previous assessment targets to prioritise which CENTURY nuggets you complete first.',
+    followup: 'A teacher or tutor follow-up is planned before the review to check attendance and completed work.'
+  });
+
+  function reportingPeriod(issueISO) {
+    if (!SIPCore.isValidISO(issueISO) || issueISO < reportingStart) {
+      throw new RangeError('The attendance reporting period starts on 21 September 2026. Check your device’s date before generating a SIP.');
+    }
+    return `${SIPCore.formatDate(reportingStart, { weekday: false })} to ${SIPCore.formatDate(issueISO, { weekday: false })}`;
+  }
+
+  function selectOptions(selections) {
+    const selected = {};
+    for (const section of sections) {
+      const value = selections[section.key] === undefined ? section.defaultValue : selections[section.key];
+      const option = section.options.find(item => item.value === value);
+      if (!option) throw new RangeError(`Choose a valid option for “${section.title}”.`);
+      selected[section.key] = option;
+    }
+    return selected;
+  }
+
+  function escalation(stage, forStudent) {
+    const opening = forStudent
+      ? 'If your attendance does not improve, you may progress'
+      : 'If attendance does not improve, the matter may progress';
+    if (stage === 'none') return `${opening} to Stage 1 of the disciplinary process.`;
+    if (stage === 'stage1') return `${opening} from Stage 1 to the next stage of the disciplinary process.`;
+    return forStudent
+      ? `${opening} to Stage 1 of the disciplinary process or, if you are already on Stage 1, to the next stage.`
+      : `${opening} to Stage 1 of the disciplinary process or, if the student is already on Stage 1, to the next stage.`;
+  }
+
+  function build(data) {
+    const {
+      name, number, attendanceDisplay, issueISO, reviewISO,
+      targetDate, adjusted, selections = {}, stage = 'unknown'
+    } = data;
+    if (!['unknown', 'none', 'stage1'].includes(stage)) {
+      throw new RangeError('Select the current disciplinary stage, or leave it as not confirmed.');
+    }
+    if (!SIPCore.isValidISO(reviewISO)) throw new RangeError('A valid automatic review date is required.');
+    const issueDate = SIPCore.formatDate(issueISO);
+    const reviewDate = SIPCore.formatDate(reviewISO);
+    const period = reportingPeriod(issueISO);
+    const selected = selectOptions(selections || {});
+    const reviewTiming = adjusted
+      ? `The date two weeks (14 calendar days) after issue is ${targetDate}. The review has been moved forward to ${reviewDate}, the next eligible weekday in college term time.`
+      : 'The review is scheduled two weeks (14 calendar days) after the date of issue.';
+    const [reviewYear, reviewMonth, reviewDay] = reviewISO.split('-');
+    const numericReview = `${reviewDay}/${reviewMonth}/${reviewYear}`;
+
+    let reviewText;
+    if (selected.review.value === 'numeric') {
+      reviewText = numericReview;
+    } else if (selected.review.value === 'scheduled_note') {
+      reviewText = `The review is scheduled for ${reviewDate}. Agreement with the student has not been recorded. ${reviewTiming}`;
+    } else {
+      reviewText = reviewDate;
+    }
+
+    const nextSteps = [
+      `From ${issueDate} until the review on ${reviewDate}, the student is expected to attend all timetabled GCSE Mathematics lessons, arrive on time and follow the normal absence-reporting procedure if unable to attend.`,
+      'As homework, the student must complete GCSE Mathematics assignments and the CENTURY nuggets linked to the learning targets identified from previous assessments.',
+      selected.steps.text,
+      `GCSE Mathematics attendance since the date of issue and completed work will be reviewed on ${reviewDate}, alongside any relevant support or reported barriers.`,
+      escalation(stage, false)
+    ].filter(Boolean).join(' ');
+
+    const sectionTexts = freezeDeep({
+      review: reviewText,
+      reason: `Recorded GCSE Mathematics attendance for the reporting period ${period} is ${attendanceDisplay}%, which is below the 70% threshold. ${selected.reason.text}`,
+      student: selected.student.text,
+      staff: `As of ${issueDate}: ${selected.staff.text} GCSE Mathematics attendance and completed work will be reviewed on ${reviewDate}.`,
+      parent: selected.parent.text,
+      safety: selected.safety.text,
+      mitigation: selected.mitigation.text,
+      support: selected.support.text,
+      steps: nextSteps
+    });
+
+    const metadata = `SUPPORTIVE IMPROVEMENT PLAN (SIP) – GCSE MATHEMATICS
+
+Student: ${name}
+Student number: ${number}
+Course: ${course}
+Date of issue: ${issueDate}
+Review date: ${reviewDate}
+Attendance reporting period: ${period}
+Recorded GCSE Mathematics attendance: ${attendanceDisplay}%`;
+    const promonitor = [metadata, ...sections.map(section => `${section.title}\n${sectionTexts[section.key]}`)].join('\n\n');
+    const additionalTeamsStep = teamsStepEmphasis[selected.steps.value];
+    const teams = `GCSE Mathematics – Supportive Improvement Plan (SIP)
+
+Student number: ${number}
+Course: ${course}
+Date of issue: ${issueDate}
+Review date: ${reviewDate}
+Attendance reporting period: ${period}
+
+Hi ${name},
+
+Your recorded attendance in GCSE Mathematics for this reporting period is ${attendanceDisplay}%, which is below 70%. You are being placed on a Supportive Improvement Plan (SIP) from ${issueDate} to help you return to regular attendance and catch up with your GCSE Mathematics learning.
+
+You need to start attending all of your timetabled GCSE Mathematics lessons, arrive on time and follow the usual absence-reporting procedure if you cannot attend. Your GCSE Mathematics teacher or tutor can discuss attendance barriers and appropriate support with you.
+
+As homework, you must complete your GCSE Mathematics assignments and the CENTURY nuggets linked to the learning targets identified from your previous assessments.${additionalTeamsStep ? `\n\n${additionalTeamsStep}` : ''}
+
+${reviewTiming} At the review on ${reviewDate}, we will consider your GCSE Mathematics attendance since the date of issue and the work you have completed.
+
+${escalation(stage, true)} Continued non-attendance may lead to removal from the course or withdrawal from the GCSE Mathematics examination, in line with college procedures.`;
+
+    return Object.freeze({ sectionTexts, promonitor, teams });
+  }
+
+  return Object.freeze({ course, reportingStart, reportingPeriod, sections, build });
+})();
+
+  </script>
+  <script id="sipInterface">
+(() => {
+  'use strict';
+
+  const $ = id => document.getElementById(id);
+  const form = $('sipForm');
+  const inputIds = ['studentNumber', 'studentName', 'attendance'];
+  const inputFields = inputIds.map($);
+  const sections = SIPTemplates.sections;
+  const sectionKeys = sections.map(section => section.key);
+  const selectionFields = Object.fromEntries(sections.map(section => [section.key, $(section.key + 'Select')]));
+  const stageField = $('disciplinaryStage');
+  const kinds = [...sectionKeys, 'promonitor', 'teams'];
+  const labels = Object.fromEntries(sections.map(section => [section.key, 'Copy section']));
+  labels.promonitor = 'Copy complete ProMonitor record';
+  labels.teams = 'Copy Teams message';
+  const fixedOutputs = new Set(['review', 'promonitor']);
+  const outputs = Object.fromEntries(kinds.map(kind => [kind, {
+    text: $(kind + 'Text'), status: $(kind + 'Status'), count: $(kind + 'Count'),
+    button: $(kind + 'Copy'), label: $(kind + 'CopyLabel'), feedback: $(kind + 'Feedback'),
+    print: $(kind + 'Print'), attempt: 0, busy: false, timer: null
+  }]));
+  const state = { plan: null, revision: 0, fingerprint: '', today: '', generated: null, choiceIdentity: null, copied: new Map() };
+  const shortDate = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', day: 'numeric', month: 'long', year: 'numeric' });
+  const weekdayDate = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'long' });
+  const cleanLine = value => String(value ?? '').replace(/[\u0000-\u001f\u007f]/gu, ' ').replace(/\s+/gu, ' ').trim();
+  const fingerprint = () => JSON.stringify(inputFields.map(field => field.value));
+  const identityFingerprint = () => JSON.stringify([cleanLine($('studentNumber').value), cleanLine($('studentName').value)]);
+  const wordCount = value => value.trim() ? value.trim().split(/\s+/u).length : 0;
+
+  function setText(id, text) { if ($(id).textContent !== text) $(id).textContent = text; }
+
+  function refreshWorkflow() {
+    let selectedCount = 0;
+    let copiedCount = 0;
+    for (const section of sections) {
+      const key = section.key;
+      const selected = section.options.some(option => option.value === selectionFields[key].value);
+      const copied = Boolean(state.plan && state.copied.has(key) && state.copied.get(key) === outputs[key].text.value.trim());
+      if (selected) selectedCount++;
+      if (copied) copiedCount++;
+      $(key + 'Card').dataset.workflow = copied ? 'copied' : selected ? 'selected' : 'pending';
+      setText(key + 'Workflow', copied ? '✓ Copied' : selected ? '✓ Option selected' : 'Choose an option');
+    }
+    setText('selectionProgress', `${selectedCount} of ${sections.length} selected`);
+    setText('copyProgress', `${copiedCount} of ${sections.length} copied`);
+    for (const kind of kinds) {
+      if (!outputs[kind].busy) {
+        const copied = Boolean(state.plan && state.copied.has(kind) && state.copied.get(kind) === outputs[kind].text.value.trim());
+        outputs[kind].label.textContent = copied ? 'Copied' : labels[kind];
+      }
+    }
+    for (const [kind, cardId] of [['teams', 'teamsCard'], ['promonitor', 'fullRecordDetails']]) {
+      const copied = Boolean(state.plan && state.copied.has(kind) && state.copied.get(kind) === outputs[kind].text.value.trim());
+      $(cardId).dataset.workflow = copied ? 'copied' : 'ready';
+    }
+  }
+
+  function fitOutput(output) {
+    output.text.style.height = 'auto';
+    if (!output.text.value) return;
+    const minimum = parseFloat(getComputedStyle(output.text).minHeight) || 270;
+    output.text.style.height = `${Math.max(minimum, output.text.scrollHeight + 2)}px`;
+  }
+
+  function refreshActions() {
+    const sectionsComplete = Boolean(state.plan && sectionKeys.every(kind => outputs[kind].text.value.trim()));
+    const complete = sectionsComplete && Boolean(outputs.teams.text.value.trim());
+    $('downloadButton').disabled = !complete;
+    $('printButton').disabled = !complete;
+    $('reminderButton').disabled = !state.plan;
+    for (const kind of kinds) {
+      const output = outputs[kind];
+      output.button.disabled = !state.plan || !output.text.value.trim() || output.busy || (kind === 'promonitor' && !sectionsComplete);
+    }
+  }
+
+  function refreshOutput(kind) {
+    const output = outputs[kind];
+    const words = wordCount(output.text.value);
+    output.count.textContent = `${words} ${words === 1 ? 'word' : 'words'}`;
+    output.print.textContent = output.text.value;
+    fitOutput(output);
+    refreshActions();
+    refreshWorkflow();
+  }
+
+  function cancelCopy(kind) {
+    const output = outputs[kind];
+    output.attempt++;
+    output.busy = false;
+    if (output.timer !== null) clearTimeout(output.timer);
+    output.timer = null;
+    output.label.textContent = labels[kind];
+  }
+
+  function clearPlan(label = 'Not generated', message = '') {
+    state.plan = null;
+    state.generated = null;
+    state.copied.clear();
+    state.revision++;
+    document.body.dataset.generated = 'false';
+    for (const kind of kinds) {
+      cancelCopy(kind);
+      const output = outputs[kind];
+      output.text.value = '';
+      output.text.readOnly = true;
+      output.status.textContent = label;
+      output.feedback.textContent = '';
+      refreshOutput(kind);
+    }
+    setText('resultsSubtitle', 'Choose the wording for each section, then generate and copy into the matching ProMonitor fields.');
+    setText('globalFeedback', message);
+    refreshSchedule();
+  }
+
+  function clearValidation() {
+    [...inputFields, ...Object.values(selectionFields), stageField].forEach(field => field.removeAttribute('aria-invalid'));
+    for (const id of ['numberError', 'nameError', 'attendanceError']) {
+      $(id).hidden = true;
+      setText(id, '');
+    }
+    setText('formFeedback', '');
+  }
+
+  function fieldError(fieldId, errorId, text) {
+    $(fieldId).setAttribute('aria-invalid', 'true');
+    setText(errorId, text);
+    $(errorId).hidden = false;
+  }
+
+  function refreshAttendance() {
+    const preview = $('attendancePreview');
+    const raw = $('attendance').value;
+    const parsed = SIPCore.parseAttendance(raw);
+    const strong = document.createElement('strong');
+    let detail = '';
+    preview.dataset.state = '';
+    if (!raw.trim()) {
+      strong.textContent = 'Attendance below 70%';
+      detail = 'Enter the recorded figure.';
+    } else if (!parsed.ok) {
+      preview.dataset.state = 'invalid';
+      strong.textContent = 'Check the attendance figure';
+      detail = 'Use 0–100, with up to two decimal places.';
+    } else if (parsed.hundredths >= 7000) {
+      preview.dataset.state = 'outside';
+      strong.textContent = `${parsed.display}% · outside this SIP trigger`;
+      detail = 'This generator is for attendance strictly below 70%.';
+    } else {
+      preview.dataset.state = 'eligible';
+      strong.textContent = `${parsed.display}% · SIP threshold met`;
+      detail = 'The plan will focus on attendance from the date of issue.';
+    }
+    preview.replaceChildren(strong, document.createTextNode(detail));
+  }
+
+  function displayDate(prefix, iso) {
+    const value = $(prefix + 'Date');
+    const date = new Date(iso + 'T00:00:00Z');
+    value.dateTime = iso;
+    value.textContent = shortDate.format(date);
+    setText(prefix + 'Weekday', weekdayDate.format(date));
+  }
+
+  function refreshSchedule() {
+    const today = SIPCore.todayISO();
+    const schedule = state.plan ? state.plan.schedule : SIPCore.reviewFor(today);
+    const issue = state.plan ? state.plan.schedule.issue : today;
+    setText('courseLabel', SIPTemplates.course);
+    setText('reportingPeriodLabel', issue >= SIPTemplates.reportingStart
+      ? SIPTemplates.reportingPeriod(issue)
+      : 'Starts on 21 September 2026 · check your device’s date');
+    displayDate('issue', issue);
+    setText('issueCaption', state.plan ? 'Date of issue · fixed' : 'Date of issue · today');
+    const notice = $('scheduleNotice');
+    notice.classList.remove('error');
+    $('reviewCountdown').dataset.state = '';
+    if (!schedule.ok) {
+      setText('reviewDate', 'Date unavailable');
+      $('reviewDate').removeAttribute('datetime');
+      setText('reviewWeekday', 'Calendar update needed');
+      setText('countdownText', 'A confirmed review date is required');
+      setText('scheduleExplanation', 'The app will not generate a SIP without an eligible review date at least 14 calendar days after issue.');
+      notice.textContent = schedule.error;
+      notice.hidden = false;
+      notice.classList.add('error');
+    } else {
+      displayDate('review', schedule.review);
+      const days = SIPCore.dayDifference(today, schedule.review);
+      const countdown = days > 0 ? `${days} ${days === 1 ? 'day' : 'days'} until review`
+        : days === 0 ? 'Review due today' : `Review overdue by ${-days} ${days === -1 ? 'day' : 'days'}`;
+      setText('countdownText', countdown);
+      $('reviewCountdown').dataset.state = days === 0 ? 'due' : days < 0 ? 'overdue' : 'upcoming';
+      setText('scheduleExplanation', schedule.adjusted
+        ? `The review is ${schedule.elapsedDays} calendar days after issue because the two-week date needs to move to an eligible college weekday.`
+        : 'Exactly two weeks (14 calendar days) after issue. The review falls on a weekday within the supplied teaching calendar.');
+      notice.hidden = !schedule.adjusted;
+      notice.textContent = schedule.adjusted ? schedule.reason : '';
+    }
+    setText('planDateNote', state.plan
+      ? `These dates stay fixed for this plan. ${state.plan.schedule.issue === today ? 'The countdown updates while the page is open.' : 'A new plan generated now will use today’s issue date.'}`
+      : 'The issue date is set automatically when you generate the texts.');
+  }
+
+  function tick(force = false) {
+    const now = new Date();
+    const today = SIPCore.todayISO(now);
+    setText('clockLabel', SIPCore.clockLabel(now));
+    if (force || today !== state.today) {
+      state.today = today;
+      setText('todayLabel', SIPCore.formatDate(today));
+      refreshSchedule();
+    }
+  }
+
+  function renderCalendar() {
+    const rows = $('calendarRows');
+    for (const range of SIPCore.calendar.ranges) {
+      const row = document.createElement('tr');
+      const label = document.createElement('td');
+      label.textContent = range.label;
+      const dates = document.createElement('td');
+      dates.append(document.createTextNode(SIPCore.formatDate(range.start, { weekday: false })));
+      const end = document.createElement('span');
+      end.className = 'end-date';
+      end.textContent = `to ${SIPCore.formatDate(range.end, { weekday: false })}`;
+      dates.append(end);
+      row.append(label, dates);
+      rows.append(row);
+    }
+  }
+
+  function onInput(event) {
+    event.target.removeAttribute('aria-invalid');
+    const errorIds = { studentNumber: 'numberError', studentName: 'nameError', attendance: 'attendanceError' };
+    if (errorIds[event.target.id]) {
+      $(errorIds[event.target.id]).hidden = true;
+      setText(errorIds[event.target.id], '');
+    }
+    setText('formFeedback', '');
+    refreshAttendance();
+    const nextFingerprint = fingerprint();
+    const identityFieldChanged = event.target.id === 'studentNumber' || event.target.id === 'studentName';
+    if (identityFieldChanged && state.choiceIdentity !== null && state.choiceIdentity !== identityFingerprint()) {
+      resetChoices();
+    }
+    if (state.plan && state.fingerprint !== nextFingerprint) {
+      clearPlan('Inputs changed', 'Student details changed. Generate the sections and Teams message again before copying.');
+    }
+    state.fingerprint = nextFingerprint;
+  }
+  inputFields.forEach(field => {
+    field.addEventListener('input', onInput);
+    field.addEventListener('change', onInput);
+  });
+
+  function currentSelections() {
+    return Object.fromEntries(sections.map(section => [section.key, selectionFields[section.key].value]));
+  }
+
+  function resetChoices() {
+    sections.forEach(section => { selectionFields[section.key].value = ''; });
+    stageField.value = 'unknown';
+    state.choiceIdentity = null;
+    state.copied.clear();
+    refreshWorkflow();
+  }
+
+  function makeTexts(plan) {
+    return SIPTemplates.build({
+      name: plan.name, number: plan.number, attendanceDisplay: plan.attendance,
+      issueISO: plan.schedule.issue, reviewISO: plan.schedule.review,
+      reviewDate: SIPCore.formatDate(plan.schedule.review), targetDate: SIPCore.formatDate(plan.schedule.target),
+      adjusted: plan.schedule.adjusted, selections: plan.selections, stage: plan.stage
+    });
+  }
+
+  function writeGenerated(kind, text, status = 'Ready to copy') {
+    state.copied.delete(kind);
+    cancelCopy(kind);
+    const output = outputs[kind];
+    output.text.value = text;
+    output.text.readOnly = fixedOutputs.has(kind);
+    output.status.textContent = status;
+    output.feedback.textContent = '';
+    refreshOutput(kind);
+  }
+
+  function refreshCombined() {
+    if (!state.plan) return;
+    const plan = state.plan;
+    const header = [
+      'SUPPORTIVE IMPROVEMENT PLAN (SIP) – GCSE MATHEMATICS',
+      `Student: ${plan.name}`, `Student number: ${plan.number}`, `Course: ${SIPTemplates.course}`,
+      `Date of issue: ${SIPCore.formatDate(plan.schedule.issue)}`,
+      `Review date: ${SIPCore.formatDate(plan.schedule.review)}`,
+      `Attendance reporting period: ${plan.period}`, `Recorded GCSE Mathematics attendance: ${plan.attendance}%`
+    ].join('\n');
+    const text = header + '\n\n' + sections.map(section => `${section.title}\n${outputs[section.key].text.value.trim()}`).join('\n\n');
+    if (outputs.promonitor.text.value !== text) writeGenerated('promonitor', text, 'Combined from sections');
+    else refreshActions();
+  }
+
+  function choicesChanged(event) {
+    event.target.removeAttribute('aria-invalid');
+    setText('formFeedback', '');
+    refreshWorkflow();
+    if (!state.plan) {
+      if (cleanLine($('studentNumber').value) && cleanLine($('studentName').value)) state.choiceIdentity = identityFingerprint();
+      return;
+    }
+    try {
+      const nextPlan = Object.freeze({ ...state.plan, selections: Object.freeze(currentSelections()), stage: stageField.value });
+      const generated = makeTexts(nextPlan);
+      const changed = sectionKeys.filter(key => generated.sectionTexts[key] !== state.generated.sectionTexts[key]);
+      const teamsChanged = generated.teams !== state.generated.teams;
+      if (changed.length || teamsChanged) {
+        state.revision++;
+        kinds.forEach(cancelCopy);
+      }
+      state.plan = nextPlan;
+      for (const key of changed) writeGenerated(key, generated.sectionTexts[key], 'Updated from selection');
+      if (teamsChanged) writeGenerated('teams', generated.teams, 'Updated from selection');
+      state.generated = generated;
+      refreshCombined();
+      refreshActions();
+      refreshWorkflow();
+      setText('globalFeedback', 'Selected wording updated. The original issue and review dates stay the same.');
+    } catch (error) {
+      event.target.setAttribute('aria-invalid', 'true');
+      clearPlan('Check selections', error.message || 'Check the dropdown selections and generate again.');
+    }
+  }
+  Object.values(selectionFields).forEach(field => field.addEventListener('change', choicesChanged));
+  stageField.addEventListener('change', choicesChanged);
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    clearValidation();
+    tick(true);
+    const data = {
+      number: cleanLine($('studentNumber').value), name: cleanLine($('studentName').value),
+      scope: SIPTemplates.course
+    };
+    const attendance = SIPCore.parseAttendance($('attendance').value);
+    const errors = [];
+    if (!data.number || data.number.length > 40) {
+      fieldError('studentNumber', 'numberError', 'Enter the student number (up to 40 characters).');
+      errors.push('studentNumber');
+    }
+    if (!data.name || data.name.length > 120) {
+      fieldError('studentName', 'nameError', 'Enter the student’s name (up to 120 characters).');
+      errors.push('studentName');
+    }
+    if (!attendance.ok || attendance.hundredths >= 7000) {
+      fieldError('attendance', 'attendanceError', attendance.ok
+        ? `Attendance is ${attendance.display}%. This SIP is only for attendance below 70%; 70% itself is not eligible.`
+        : attendance.error);
+      errors.push('attendance');
+    }
+    for (const section of sections) {
+      if (!section.options.some(option => option.value === selectionFields[section.key].value)) {
+        selectionFields[section.key].setAttribute('aria-invalid', 'true');
+        errors.push(section.key + 'Select');
+      }
+    }
+    if (!['unknown', 'none', 'stage1'].includes(stageField.value)) {
+      stageField.setAttribute('aria-invalid', 'true');
+      errors.push('disciplinaryStage');
+    }
+    if (errors.length) {
+      clearPlan('Check details');
+      setText('formFeedback', 'Check the highlighted fields. Enter the student details, use attendance below 70% and choose valid dropdown options.');
+      $(errors[0]).focus();
+      return;
+    }
+    const now = new Date();
+    const issueISO = SIPCore.todayISO(now);
+    if (issueISO < SIPTemplates.reportingStart) {
+      clearPlan('Check device date');
+      setText('formFeedback', 'The attendance reporting period starts on 21 September 2026. Check your device’s date before generating a SIP.');
+      return;
+    }
+    const schedule = SIPCore.reviewFor(issueISO);
+    if (!schedule.ok) {
+      clearPlan('Calendar update needed');
+      setText('formFeedback', schedule.error);
+      return;
+    }
+    const plan = Object.freeze({
+      ...data, period: SIPTemplates.reportingPeriod(issueISO), attendance: attendance.display,
+      schedule: Object.freeze(schedule), createdAt: now.toISOString(),
+      selections: Object.freeze(currentSelections()), stage: stageField.value
+    });
+    let generated;
+    try { generated = makeTexts(plan); }
+    catch (error) {
+      clearPlan('Check selections');
+      setText('formFeedback', error.message || 'The sections could not be generated. Check the selections.');
+      return;
+    }
+    state.revision++;
+    state.plan = plan;
+    state.generated = generated;
+    state.copied.clear();
+    state.choiceIdentity = identityFingerprint();
+    state.fingerprint = fingerprint();
+    document.body.dataset.generated = 'true';
+    kinds.forEach(cancelCopy);
+    sectionKeys.forEach(key => writeGenerated(key, generated.sectionTexts[key]));
+    writeGenerated('teams', generated.teams, 'Ready to review');
+    refreshCombined();
+    setText('resultsSubtitle', `${data.name} · Student ${data.number} · GCSE Mathematics · ${attendance.display}% attendance`);
+    setText('globalFeedback', 'The nine ProMonitor sections and Teams message are ready. Choose a different option to update a section, then copy its text.');
+    refreshSchedule();
+    $('resultsHeading').focus({ preventScroll: true });
+    $('resultsHeading').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  });
+
+  for (const kind of kinds) {
+    outputs[kind].text.addEventListener('input', () => {
+      if (!state.plan || fixedOutputs.has(kind)) return;
+      state.copied.delete(kind);
+      cancelCopy(kind);
+      outputs[kind].status.textContent = outputs[kind].text.value.trim() ? 'Edited · check dates' : 'Text empty';
+      outputs[kind].feedback.textContent = '';
+      refreshOutput(kind);
+      if (sectionKeys.includes(kind)) refreshCombined();
+    });
+  }
+
+  // Use a selection-based copy in the click gesture so local HTML files work
+  // without a clipboard permission prompt. Fall back to the clipboard API,
+  // then a visible selection with manual-copy instructions.
+  function selectionCopy(text) {
+    const previous = document.activeElement;
+    const buffer = document.createElement('textarea');
+    buffer.value = text;
+    buffer.readOnly = true;
+    buffer.tabIndex = -1;
+    buffer.setAttribute('aria-label', 'Temporary copy buffer');
+    Object.assign(buffer.style, { position: 'fixed', top: '0', left: '-9999px', opacity: '0', fontSize: '16px' });
+    document.body.append(buffer);
+    let copied = false;
+    try {
+      buffer.focus({ preventScroll: true });
+      buffer.select();
+      buffer.setSelectionRange(0, buffer.value.length);
+      copied = Boolean(document.execCommand && document.execCommand('copy'));
+    } catch (_) { copied = false; }
+    finally {
+      buffer.remove();
+      if (previous && typeof previous.focus === 'function') previous.focus({ preventScroll: true });
+    }
+    return copied;
+  }
+
+  async function copyOutput(kind) {
+    const output = outputs[kind];
+    const text = output.text.value.trim();
+    if (!state.plan || !text || output.busy) return;
+    const revision = state.revision;
+    const attempt = ++output.attempt;
+    output.busy = true;
+    output.label.textContent = 'Copying…';
+    output.feedback.textContent = '';
+    refreshActions();
+    let copied = selectionCopy(text);
+    if (!copied && window.isSecureContext && navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      try {
+        copied = await Promise.race([
+          navigator.clipboard.writeText(text).then(() => true, () => false),
+          new Promise(resolve => { output.timer = setTimeout(() => resolve(false), 4000); })
+        ]);
+      } catch (_) { copied = false; }
+    }
+    if (revision !== state.revision || attempt !== output.attempt || !state.plan) return;
+    if (output.timer !== null) clearTimeout(output.timer);
+    output.timer = null;
+    output.busy = false;
+    output.label.textContent = copied ? 'Copied' : labels[kind];
+    if (copied) {
+      state.copied.set(kind, text);
+      output.status.textContent = 'Copied';
+      output.feedback.textContent = kind === 'promonitor'
+        ? 'Copied. Paste the complete record into the correct student’s ProMonitor record.'
+        : kind === 'teams'
+          ? 'Copied. Paste into the correct student’s Teams chat and send when ready.'
+          : `Copied. Paste into the “${sections.find(section => section.key === kind).title}” field.`;
+    } else {
+      output.feedback.textContent = 'Automatic copying is unavailable. The text is selected: press Ctrl+C (Windows), ⌘C (Mac), or use your device’s Copy option.';
+      output.text.focus();
+      output.text.select();
+      output.text.setSelectionRange(0, output.text.value.length);
+    }
+    refreshActions();
+    refreshWorkflow();
+  }
+  kinds.forEach(kind => outputs[kind].button.addEventListener('click', () => copyOutput(kind)));
+
+  function download(content, filename, type) {
+    const url = URL.createObjectURL(new Blob([content], { type }));
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = filename;
+    anchor.style.display = 'none';
+    document.body.append(anchor);
+    try { anchor.click(); }
+    finally { anchor.remove(); setTimeout(() => URL.revokeObjectURL(url), 30000); }
+  }
+
+  function fileStem() {
+    const number = state.plan.number.replace(/[^a-z0-9_-]/giu, '_').slice(0,40) || 'student';
+    return `SIP_${number}_${state.plan.schedule.issue}`;
+  }
+
+  function icsEscape(value) {
+    return String(value).replace(/\\/gu, '\\\\').replace(/\r\n?|\n/gu, '\\n').replace(/;/gu, '\\;').replace(/,/gu, '\\,');
+  }
+
+  function foldICS(line) {
+    const encoder = new TextEncoder();
+    const chunks = [];
+    let chunk = '';
+    let bytes = 0;
+    for (const character of line) {
+      const size = encoder.encode(character).length;
+      if (bytes + size > 75) {
+        chunks.push(chunk);
+        chunk = ' ';
+        bytes = 1;
+      }
+      chunk += character;
+      bytes += size;
+    }
+    chunks.push(chunk);
+    return chunks.join('\r\n');
+  }
+
+  function reviewICS(plan) {
+    const stamp = new Date().toISOString().replace(/[-:]/gu, '').replace(/\.\d{3}Z$/u, 'Z');
+    const day = plan.schedule.review.replace(/-/gu, '');
+    const nextDay = SIPCore.addDays(plan.schedule.review, 1).replace(/-/gu, '');
+    const uid = `sip-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}@offline.local`;
+    const description = `Review the GCSE Mathematics attendance SIP for ${plan.name} (student ${plan.number}).\nIssued: ${SIPCore.formatDate(plan.schedule.issue)}.\nAttendance reporting period: ${plan.period}.\nAttendance at issue: ${plan.attendance}%.\nConsider GCSE Mathematics attendance since issue, any reported barriers and support.\nCourse: ${plan.scope}\nThis is an all-day review reminder, not a booked appointment.`;
+    const lines = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Offline SIP Attendance Generator//EN', 'CALSCALE:GREGORIAN',
+      'BEGIN:VEVENT', `UID:${uid}`, `DTSTAMP:${stamp}`, `DTSTART;VALUE=DATE:${day}`, `DTEND;VALUE=DATE:${nextDay}`,
+      `SUMMARY:${icsEscape(`GCSE Mathematics SIP review – ${plan.name} (${plan.number})`)}`,
+      `DESCRIPTION:${icsEscape(description)}`, 'CLASS:PRIVATE', 'TRANSP:TRANSPARENT',
+      'BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY', 'DESCRIPTION:Review the attendance SIP tomorrow.',
+      'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'
+    ];
+    return lines.map(foldICS).join('\r\n') + '\r\n';
+  }
+
+  $('downloadButton').addEventListener('click', () => {
+    if (!state.plan || !kinds.every(kind => outputs[kind].text.value.trim())) return;
+    try {
+      const text = `PROMONITOR RECORD\n\n${outputs.promonitor.text.value.trim()}\n\n${'—'.repeat(40)}\n\nTEAMS MESSAGE\n\n${outputs.teams.text.value.trim()}\n`;
+      download(text, fileStem() + '.txt', 'text/plain;charset=utf-8');
+      setText('globalFeedback', 'Text download prepared. It includes all nine ProMonitor sections and the Teams message, with your edits.');
+    } catch (_) { setText('globalFeedback', 'The download could not be prepared. Use the copy buttons to keep the sections and message.'); }
+  });
+
+  $('reminderButton').addEventListener('click', () => {
+    if (!state.plan) return;
+    try {
+      download(reviewICS(state.plan), fileStem() + '_Review.ics', 'text/calendar;charset=utf-8');
+      setText('globalFeedback', `Review reminder prepared for ${SIPCore.formatDate(state.plan.schedule.review)}. Import the .ics file into your calendar to use its one-day reminder.`);
+    } catch (_) { setText('globalFeedback', 'The reminder file could not be prepared. Add the review date shown above to your calendar.'); }
+  });
+
+  $('printButton').addEventListener('click', () => {
+    if (!state.plan || !kinds.every(kind => outputs[kind].text.value.trim())) return;
+    kinds.forEach(refreshOutput);
+    window.print();
+  });
+
+  function resetSession(focus = true) {
+    inputFields.forEach(field => { field.value = ''; });
+    resetChoices();
+    clearValidation();
+    $('fullRecordDetails').open = false;
+    $('calendarDetails').open = false;
+    clearPlan();
+    state.fingerprint = fingerprint();
+    refreshAttendance();
+    tick(true);
+    if (focus) {
+      $('studentNumber').focus({ preventScroll: true });
+      form.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }
+  }
+  form.addEventListener('reset', event => { event.preventDefault(); resetSession(); });
+
+  $('themeButton').addEventListener('click', () => {
+    const dark = document.documentElement.dataset.theme !== 'dark';
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    $('themeButton').setAttribute('aria-pressed', String(dark));
+    $('themeButton').setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    setText('themeLabel', dark ? 'Light mode' : 'Dark mode');
+  });
+
+  let resizeQueued = false;
+  window.addEventListener('resize', () => {
+    if (resizeQueued) return;
+    resizeQueued = true;
+    requestAnimationFrame(() => { kinds.forEach(kind => fitOutput(outputs[kind])); resizeQueued = false; });
+  });
+  window.addEventListener('focus', () => tick(true));
+  window.addEventListener('pageshow', event => { if (event.persisted) resetSession(false); });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(true); });
+  $('fullRecordDetails').addEventListener('toggle', () => { if ($('fullRecordDetails').open) fitOutput(outputs.promonitor); });
+  window.addEventListener('beforeprint', () => kinds.forEach(kind => { outputs[kind].print.textContent = outputs[kind].text.value; }));
+  renderCalendar();
+  resetSession(false);
+  setInterval(() => tick(), 1000);
+})();
+
+  </script>
+</body>
+</html>
